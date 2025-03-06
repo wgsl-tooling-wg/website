@@ -2,10 +2,10 @@ This is the source for the public WESL site.
 
 ## Getting started
 
-You will need an LTS version of [Node.js](https://nodejs.org).
+You will need an LTS version of [Node.js](https://nodejs.org) and [pnpm](https://pnpm.io/installation).
 
 - Clone this repository locally with `git clone --recurse-submodules <repo url>`. Alternatively, clone normally and then `git submodule update --init --recursive`.
-- `npm install`
+- `pnpm install`
 
 This repository currently includes the [WESL wiki](https://github.com/wgsl-tooling-wg/wesl-spec/wiki) content as a submodule. To update the submodule after pulling new commits:
 
@@ -16,13 +16,13 @@ $ git submodule update --recursive --remote
 To run the project as a local web server:
 
 ```console
-$ npm run start
+$ pnpm run start
 ```
 
 To build the site as static files:
 
 ```console
-$ npm run build
+$ pnpm run build
 ```
 
 This will create a `build` folder with the files to be deployed.
