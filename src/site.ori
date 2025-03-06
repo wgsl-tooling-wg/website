@@ -4,16 +4,15 @@
   assets
 
   // All page bodies, used twice: once for nav, once for their content
-  (areas) = {
+  (documents) = {
+    index.html = marked.js(index.md)
     docs/ = map(wiki.ori, { extension: ".md->.html", value: docPage.ori })
   }
 
   // Left navigation links
-  (nav): nav.ori(areas)
+  (nav): nav.ori(documents)
 
   // Apply base page template to all bodies and include nav
-  ...deepMap(areas, (document) => page.ori.html(document, nav))
-
-  // Home page
-  index.html = page.ori.html(index.ori.html/, nav)
+  // TODO [Jan]: `from` shouldn't be necessary
+  ...deepMap(from(documents), (document) => page.ori.html(document, nav))
 }

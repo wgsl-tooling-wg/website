@@ -1,17 +1,28 @@
 // Side navigation is built from the dynamic tree of page bodies
-(areas) => indent`
+(tree) => indent`
   <ul>
-    ${ map(areas, (documents, areaKey) => indent`
-      <li>
-        <div class="area">${ slash/remove(areaKey) }</div>
-        <ul>
-          ${ map(documents, (document, fileName) => indent`
+    ${ map(tree, (value, key) => 
+      slash/has(key)
+        // A subtree (an area of the site)
+        ? indent`
             <li>
-              <a href="/${ areaKey }${ fileName }">${ docPageTitle.ori(fileName) }</a>
+              <div class="area">${ slash/remove(key) }</div>
+              <ul>
+                ${ map(value, (document, fileName) => indent`
+                  <li>
+                    <a href="/${ key }${ fileName }">${ document/title }</a>
+                  </li>
+                `) }
+              </ul>
             </li>
-          `) }
-        </ul>
-      </li>
-    ` )}
+          ` 
+
+        // A standalone top-level page
+        : indent`
+          <li>
+            <a href="/${ key }">${ value/title }</a>
+          </li>
+        `
+    )}
   </ul>
 `

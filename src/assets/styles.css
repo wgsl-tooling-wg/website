@@ -105,7 +105,14 @@ nav {
 
     div {
       font-size: 0.95em;
+      margin-top: 0.5rem;
       text-transform: uppercase;
     }
+  }
+}
+
+main {
+  > :first-child {
+    margin-top: 0;
   }
 }
