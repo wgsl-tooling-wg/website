@@ -4,28 +4,55 @@ This is the source for the public WESL site.
 
 You will need an LTS version of [Node.js](https://nodejs.org) and [pnpm](https://pnpm.io/installation).
 
-- Clone this repository locally with `git clone --recurse-submodules <repo url>`. Alternatively, clone normally and then `git submodule update --init --recursive`.
-- `pnpm install`
+1. Clone this repository and install dependencies:
 
-This repository currently includes the [WESL wiki](https://github.com/wgsl-tooling-wg/wesl-spec/wiki) content as a submodule. To update the submodule after pulling new commits:
+    ```sh
+    git clone https://github.com/wgsl-tooling-wg/website.git
+    ```
 
-```console
-$ git submodule update --recursive --remote
-```
+    ```sh
+    cd website
+    pnpm install
+    ```
 
-To run the project as a local web server:
+1. Setup submodules
 
-```console
-$ pnpm run start
-```
+    This repository currently includes the
+    [WESL wiki](https://github.com/wgsl-tooling-wg/wesl-spec/wiki) and
+    [WESL Spec](https://github.com/wgsl-tooling-wg/wesl-spec) content via submodules.
 
-To build the site as static files:
+    Initialize the submodules.
 
-```console
-$ pnpm run build
-```
+    ```sh
+    git submodule init
+    ```
 
-This will create a `build` folder with the files to be deployed.
+    Setup future git commands (like git pull) to automatically work on submodules too.
+
+    ```sh
+    git config submodule.recurse true
+    ```
+
+    Install submodule content too
+
+    ```sh
+    git pull
+    ```
+
+1. run locally
+
+    To run the project as a local web server:
+
+    ```console
+    pnpm run start
+    ```
+
+    To build the site as static files
+    (creates a `build` folder with the files to be deployed):
+
+    ```console
+    pnpm run build
+    ```
 
 ## License
 
