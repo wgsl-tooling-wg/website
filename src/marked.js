@@ -1,30 +1,24 @@
-import { isUnpackable } from "@weborigami/async-tree";
+import { extension, isUnpackable } from "@weborigami/async-tree";
 import { documentObject, toString } from "@weborigami/origami";
 import highlight from "highlight.js";
-import { marked } from "marked";
+import { Marked } from "marked";
 import { gfmHeadingId as markedGfmHeadingId } from "marked-gfm-heading-id";
 import { markedHighlight } from "marked-highlight";
 import { markedSmartypants } from "marked-smartypants";
 
 const renderer = {
   link({ href, title, text }) {
-    // Append '.html' if the link is a local path and does not have an
-    // extension. Don't do that if the href ends with a slash.
-    const url = new URL(href, "fake://");
-    if (url.protocol === "fake:") {
-      // Local path
-      if (!href.match(/\/|(\.[a-z]+)$/i)) {
-        href += ".html";
-      }
+    // Append '.html' if the link is a relative path and does not have an extension
+    if (!href.match(/\.[a-z]+$/i)) {
+      href += ".html";
     }
-
     const titleAttr = title ? ` title="${title}"` : "";
     return `<a href="${href}"${titleAttr}>${text}</a>`;
   },
 };
 
+const marked = new Marked();
 marked.use(
-  // @ts-ignore
   markedGfmHeadingId(),
   markedHighlight({
     highlight(code, lang) {
@@ -37,10 +31,8 @@ marked.use(
   markedSmartypants(),
   {
     gfm: true, // Use GitHub-flavored markdown.
-    // @ts-ignore
-    mangle: false,
-  },
-  { renderer }
+    renderer,
+  }
 );
 
 /**
@@ -66,6 +58,9 @@ export default async function mdHtml(input) {
   if (markdown === null) {
     throw new Error("mdHtml: The provided input couldn't be treated as text.");
   }
-  const html = marked(markdown);
+  const html = marked.parse(markdown);
   return inputIsDocument ? documentObject(html, input) : html;
 }
+
+mdHtml.key = (sourceKey) => extension.replace(sourceKey, ".md", ".html");
+mdHtml.inverseKey = (resultKey) => extension.replace(resultKey, ".html", ".md");
