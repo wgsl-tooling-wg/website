@@ -2,7 +2,7 @@
 // The docs index page
 (docs) => page.ori.html({
   title: "Docs"
-  @text: @template()
+  @text: @template() // Create the body text using the template below
 })
 ---
 
@@ -10,8 +10,8 @@
 
 <ul>
   ${ map(docs, (html, fileName) => indent`
-  <li>
-    <a href="${ fileName }">${ fileName }</a>
-  </li>
+    <li>
+      <a href="${ fileName }">${ fileName }</a>
+    </li>
   `) }
 </ul>

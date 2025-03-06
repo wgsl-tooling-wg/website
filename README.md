@@ -4,7 +4,7 @@ This is the source for the public WESL site.
 
 You will need an LTS version of [Node.js](https://nodejs.org).
 
-- Clone this repository locally with `git clone --recurse-submodules <repo url>`
+- Clone this repository locally with `git clone --recurse-submodules <repo url>`. Alternatively, clone normally and then `git submodule update --init --recursive`.
 - `npm install`
 
 This repository currently includes the [WESL wiki](https://github.com/wgsl-tooling-wg/wesl-spec/wiki) content as a submodule. To update the submodule after pulling new commits:
