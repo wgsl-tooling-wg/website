@@ -1,0 +1,17 @@
+// Side navigation is built from the dynamic tree of page bodies
+(areas) => indent`
+  <ul>
+    ${ map(areas, (documents, areaKey) => indent`
+      <li>
+        <div class="area">${ slash/remove(areaKey) }</div>
+        <ul>
+          ${ map(documents, (document, fileName) => indent`
+            <li>
+              <a href="/${ areaKey }${ fileName }">${ docPageTitle.ori(fileName) }</a>
+            </li>
+          `) }
+        </ul>
+      </li>
+    ` )}
+  </ul>
+`

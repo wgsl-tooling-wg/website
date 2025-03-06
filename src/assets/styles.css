@@ -26,14 +26,16 @@
 body {
   --background-color: #fff;
   --contrast-text-color: black;
-  --text-color: #373c44;
+  --muted-background-color: #f6f8fa;
   --primary-color: #0172ad;
+  --secondary-color: #5d6b89;
+  --text-color: #373c44;
   background-color: var(--background-color);
   color: var(--text-color);
   display: grid;
   font-family: "Roboto", "Helvetica", Arial, sans-serif;
   font-size: 18px;
-  gap: 1rem;
+  gap: 2rem;
   grid-template-columns: auto 1fr;
   line-height: 1.5;
   margin: 0;
@@ -58,18 +60,52 @@ a {
 
 pre, code {
   font-family: "Roboto Mono", monospace;
+  font-size: 0.9em;
   overflow: auto;
 }
 
-header {
-  color: var(--contrast-text-color);
+pre {
+  background: var(--muted-background-color);
+  padding: 0.5rem;
+}
 
+header,
+nav {
   a {
-    color: inherit;
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+header {
+  color: var(--contrast-text-color);
+}
+
+nav {   
+  a {
+    color: var(--secondary-color);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .area {
+      font-weight: bold;
+    }
+
+    div,
+    > * {
+      padding: 0.25rem 0;
+    }
+
+    div {
+      font-size: 0.95em;
+      text-transform: uppercase;
     }
   }
 }

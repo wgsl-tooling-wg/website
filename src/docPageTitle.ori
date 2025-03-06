@@ -1,0 +1,3 @@
+// Convert a file name to a page title: remove extension and replace hyphens
+// with spaces.
+(fileName) => basename(fileName)/replaceAll("-", " ")

@@ -1,25 +1,30 @@
+---
+// Main page template
+(document, nav) => @template() // Invoke template below
+---
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/assets/styles.css" />
-    <title>${ _/title }</title>
+    <title>${ document/title }</title>
   </head>
   <body>
     <header>
       <a href="/">WESL</a>
     </header>
     <header>
-      <a href="/docs">Docs</a>
+      <a href="https://github.com/wgsl-tooling-wg/wesl-spec">GitHub</a>
     </header>
     <nav>
-      ${ _/nav ?? "" }
+      ${ nav }
     </nav>
     <main>
 ${
-  // Main body text, keep left-justified so pre tags work 
-  _/@text ?? ""
+  // Main body text, keep left-justified so pre tags work
+  document/@text
 }
     </main>
   </body>

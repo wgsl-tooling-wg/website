@@ -1,20 +1,19 @@
 // This file defines the overall structure of the WESL site
 {
-  // Home page
-  index.html = index.ori.html()
-
   // Static assets
   assets
-  
-  // The docs area
-  docs = {
-    // Create a page for each markdown file in the wiki submodule
-    (pages): map(wiki, { extension: ".md->.html", value: docPage.ori })
 
-    // Docs index page, links to all the individual pages
-    index.html = docsIndex.ori.html(pages)
-    
-    // Merge in all the individual pages
-    ...pages
+  // All page bodies, used twice: once for nav, once for their content
+  (areas) = {
+    docs/ = map(wiki.ori, { extension: ".md->.html", value: docPage.ori })
   }
+
+  // Left navigation links
+  (nav): nav.ori(areas)
+
+  // Apply base page template to all bodies and include nav
+  ...deepMap(areas, (document) => page.ori.html(document, nav))
+
+  // Home page
+  index.html = page.ori.html(index.ori.html/, nav)
 }
