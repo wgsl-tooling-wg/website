@@ -7,6 +7,20 @@
     <title>${ _/title }</title>
   </head>
   <body>
-    <main>${ _/@text }</main>
+    <header>
+      <a href="/">WESL</a>
+    </header>
+    <header>
+      <a href="/docs">Docs</a>
+    </header>
+    <nav>
+      ${ _/nav ?? "" }
+    </nav>
+    <main>
+${
+  // Main body text, keep left-justified so pre tags work 
+  _/@text ?? ""
+}
+    </main>
   </body>
 </html>

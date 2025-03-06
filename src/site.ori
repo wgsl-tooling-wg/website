@@ -2,6 +2,9 @@
 {
   // Home page
   index.html = index.ori.html()
+
+  // Static assets
+  assets
   
   // The docs area
   docs = {
