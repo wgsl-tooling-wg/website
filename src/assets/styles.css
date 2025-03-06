@@ -70,6 +70,7 @@ pre {
   padding: 0.5rem;
 }
 
+.logo,
 header,
 nav {
   a {
@@ -78,6 +79,15 @@ nav {
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.logo {
+  a {
+    align-items: center;
+    color: var(--contrast-text-color);
+    display: flex;
+    font-weight: bold;
   }
 }
 
