@@ -38,7 +38,8 @@ body {
   gap: 2rem;
   grid-template-columns: auto 1fr;
   line-height: 1.5;
-  margin: 0;
+  max-width: 1200px;
+  margin: auto;
   padding: 2rem;
 
   > * {
@@ -81,7 +82,10 @@ nav {
 }
 
 header {
+  align-items: center;
   color: var(--contrast-text-color);
+  display: grid;
+  justify-content: end;
 }
 
 nav {   

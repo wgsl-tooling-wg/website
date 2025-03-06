@@ -6,6 +6,7 @@
   // All page bodies, used twice: once for nav, once for their content
   (documents) = {
     index.html = marked.js(index.md)
+    spec/ = map(spec.ori, { extension: ".md->.html", value: docPage.ori })
     docs/ = map(wiki.ori, { extension: ".md->.html", value: docPage.ori })
   }
 
