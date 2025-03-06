@@ -1,0 +1,17 @@
+// This file defines the overall structure of the WESL site
+{
+  // Home page
+  index.html = index.ori.html()
+  
+  // The docs area
+  docs = {
+    // Create a page for each markdown file in the wiki submodule
+    (pages): map(wiki, { extension: ".md->.html", value: docPage.ori })
+
+    // Docs index page, links to all the individual pages
+    index.html = docsIndex.ori.html(pages)
+    
+    // Merge in all the individual pages
+    ...pages
+  }
+}

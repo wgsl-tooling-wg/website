@@ -1,0 +1,17 @@
+---
+// The docs index page
+(docs) => page.ori.html({
+  title: "Docs"
+  @text: @template()
+})
+---
+
+<h1>Docs</h1>
+
+<ul>
+  ${ map(docs, (html, fileName) => indent`
+  <li>
+    <a href="${ fileName }">${ fileName }</a>
+  </li>
+  `) }
+</ul>

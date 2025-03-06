@@ -1,0 +1,5 @@
+// A single page in the docs area; uses the base page template
+(markdown, fileName) => page.ori.html({
+  title: fileName
+  @text: mdHtml(markdown)
+})
