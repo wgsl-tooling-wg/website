@@ -67,7 +67,12 @@ pre, code {
 
 pre {
   background: var(--muted-background-color);
-  padding: 0.5rem;
+  padding: 0.1rem;
+}
+
+code.hljs {
+  background: none;
+  padding: 0;
 }
 
 .logo,
