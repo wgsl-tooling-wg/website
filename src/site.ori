@@ -3,7 +3,7 @@
   // Static assets
   assets
 
-  // All page bodies, used twice: once for nav, once for their content
+  // All the page bodies, used three ways: for nav, for content, and for search.
   (documents) = {
     index.html = marked.js(index.md)
     docs/ = map(wiki.ori, { extension: ".md->.html", value: docPage.ori })
@@ -15,5 +15,12 @@
 
   // Apply base page template to all bodies and include nav
   // TODO [Jan]: `from` shouldn't be necessary
-  ...deepMap(from(documents), (document) => page.ori.html(document, nav))
+  (pages/) = deepMap(from(documents), (document) => page.ori.html(document, nav))
+
+  // Merge in all the pages
+  ...pages
+
+  // Search page and indexes/resources created on demand (only once)
+  search.html = page.ori.html(search.ori.html(), nav)
+  pagefind/ = once(=package:@weborigami/pagefind(pages))
 }

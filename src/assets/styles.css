@@ -140,6 +140,7 @@ main {
   }
 }
 
+/* Desktop */
 @media (min-width: 1000px) {
   body {
     grid-template-columns: auto 1fr;

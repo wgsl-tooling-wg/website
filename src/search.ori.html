@@ -1,0 +1,19 @@
+---
+title: Search
+---
+
+<!-- Boilerplate UI from https://pagefind.app/docs/ui-usage/ -->
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script src="/pagefind/pagefind-ui.js"></script>
+<!-- Padding avoids focus rect clipping -->
+<div id="search" style="padding: 2px; width: calc(100% - 4px)"></div>
+<script>
+  window.addEventListener("DOMContentLoaded", (event) => {
+    new PagefindUI({
+      element: "#search",
+      pageSize: 10,
+      showImages: false,
+      showSubResults: true,
+    });
+  });
+</script>
