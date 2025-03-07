@@ -23,12 +23,18 @@
         <a href="https://github.com/wgsl-tooling-wg/wesl-spec">GitHub</a>
       </div>
     </header>
-    <details id="menu" open>
+    <details id="menu">
       <summary>Table of Contents</summary>
       <nav>
         ${ nav }
       </nav>
     </details>
+    <script>
+      function toggleTocMenu() {
+        menu.open = window.innerWidth >= 1000;
+      }
+      toggleTocMenu();
+    </script>
     <main>
 ${
   // Main body text, keep left-justified so pre tags work

@@ -2,28 +2,24 @@
 // This is client code loaded by main page template
 //
 
-// Toggle the table of contents menu based on the current value of the
-// --show-table-of-contents custom property, which in turn is set by a CSS media
-// query.
-function toggleTableOfContents() {
-  const menu = document.getElementById("menu");
-  // Should be "0" or "1"
-  const propertyValue = getComputedStyle(menu).getPropertyValue(
-    "--show-table-of-contents"
-  );
-  menu.open = parseInt(propertyValue) === 1;
-}
+// Manage the display of the menu with the table of contents
 
-// Open menu on desktop
 window.addEventListener("load", () => {
-  toggleTableOfContents();
+  // The pagehide handler below should be sufficient, but on iOS at least it's
+  // too slow to act and can leave the menu visible when navigating back, so we
+  // also try to close the menu before the navigation occurs.
+  document.getElementById("menu").addEventListener("click", (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      menu.open = false;
+    }
+  });
 });
 window.addEventListener("pagehide", () => {
-  menu.open = false;
+  document.getElementById("menu").open = false;
 });
 window.addEventListener("pageshow", () => {
-  toggleTableOfContents();
+  toggleTocMenu();
 });
 window.addEventListener("resize", () => {
-  toggleTableOfContents();
+  toggleTocMenu();
 });

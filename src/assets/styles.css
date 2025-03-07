@@ -141,6 +141,7 @@ main {
 }
 
 /* Desktop */
+/* This breakpoint width should match what's in page.ori.html */
 @media (min-width: 1000px) {
   body {
     grid-template-columns: auto 1fr;
