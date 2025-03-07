@@ -1,0 +1,5 @@
+// Convert a spec area PascalCase file name to a page title: "FooBar.md" ->
+// "Foo Bar"
+(fileName) => fileName === "GLOSSARY.md"
+  ? "Glossary" // Special case
+  : basename(fileName)/replace(new:RegExp("([A-Z])", "g"), " $1")/trim()

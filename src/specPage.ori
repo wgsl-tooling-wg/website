@@ -1,5 +1,5 @@
 // A single page in the specs area
 (markdown, fileName) => {
-  title: docPageTitle.ori(fileName)
+  title: specPageTitle.ori(fileName)
   @text: marked.js(markdown) // Convert markdown to HTML for the page body
 }
