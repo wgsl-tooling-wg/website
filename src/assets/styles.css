@@ -23,7 +23,7 @@
   box-sizing: border-box;
 }
 
-body {
+:root {
   --background-color: #fff;
   --contrast-text-color: black;
   --muted-background-color: #f6f8fa;
@@ -31,6 +31,9 @@ body {
   --secondary-color: #5d6b89;
   --show-table-of-contents: 0; /* no */
   --text-color: #373c44;
+}
+
+body {
   background-color: var(--background-color);
   color: var(--text-color);
   display: grid;
@@ -157,5 +160,18 @@ main {
     summary {
       display: none;
     }
+  }
+}
+
+/* Dark mode */
+@media only screen and (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #13171f;
+    --contrast-text-color: white;
+    --muted-background-color: #262a2f;
+    --primary-color: #01aaff;
+    --secondary-color: #969eaf;
+    --text-color: #c2c7d0;
+   color-scheme: dark;
   }
 }
