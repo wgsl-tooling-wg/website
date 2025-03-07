@@ -8,8 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="/assets/github.css" media="(prefers-color-scheme: light)" />
-    <link rel="stylesheet" type="text/css" href="/assets/github-dark.css" media="(prefers-color-scheme: dark)" />
+    <link rel="stylesheet" type="text/css" href="/assets/github.css" />
     <link rel="stylesheet" type="text/css" href="/assets/styles.css" />
     <title>${ document/title }</title>
     <script type="module" src="/assets/main.js"></script>
@@ -24,18 +23,12 @@
         <a href="https://github.com/wgsl-tooling-wg/wesl-spec">GitHub</a>
       </div>
     </header>
-    <details id="menu">
+    <details id="navMenu">
       <summary>Table of Contents</summary>
-      <nav>
-        ${ nav }
-      </nav>
     </details>
-    <script>
-      function toggleTocMenu() {
-        menu.open = window.innerWidth >= 1000;
-      }
-      toggleTocMenu();
-    </script>
+    <nav id="sideNav">
+      ${ nav }
+    </nav>
     <main>
 ${
   // Main body text, keep left-justified so pre tags work

@@ -6,6 +6,7 @@
   // All the page bodies, used three ways: for nav, for content, and for search.
   (documents) = {
     index.html = marked.js(index.md)
+    search.html = search.ori.html()
     docs/ = map(wiki.ori, { extension: ".md->.html", value: docPage.ori })
     spec/ = map(spec.ori, { extension: ".md->.html", value: specPage.ori })
   }
@@ -20,7 +21,6 @@
   // Merge in all the pages
   ...pages
 
-  // Search page and indexes/resources created on demand (only once)
-  search.html = page.ori.html(search.ori.html(), nav)
+  // Create search indexes/resources the first time they're requested
   pagefind/ = once(=package:@weborigami/pagefind(pages))
 }

@@ -110,6 +110,10 @@ header {
   }
 }
 
+#sideNav {
+  display: none;
+}
+
 nav {   
   a {
     color: var(--secondary-color);
@@ -137,6 +141,20 @@ nav {
   }
 }
 
+#navMenu {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  cursor: default;
+
+  nav {
+    background: var(--background-color);
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    position: absolute;
+    z-index: 10; /* Pagefind magnifying glass icon is 9 */
+  }
+}
+
 main {
   > :first-child {
     margin-top: 0;
@@ -156,10 +174,12 @@ main {
     grid-template-columns: subgrid;
   }
 
-  #menu {
-    summary {
-      display: none;
-    }
+  #navMenu {
+    display: none;
+  }
+
+  #sideNav {
+    display: block;
   }
 }
 
