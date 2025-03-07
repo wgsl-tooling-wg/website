@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "ori copy src/site.ori, clear files:build",
+    "dev": "run-s start",
     "start": "ori serve watch src, =debug src/site.ori"
   },
   "devDependencies": {
