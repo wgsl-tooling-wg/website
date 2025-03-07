@@ -24,5 +24,14 @@
           </li>
         `
     )}
+
+    <li>
+      <div class="area">try wesl</div>
+      <ul>
+        <li>
+          <a href="https://wesl.thissma.fr">Playground</a>
+        </li>
+      </ul>
+    </li>
   </ul>
 `
