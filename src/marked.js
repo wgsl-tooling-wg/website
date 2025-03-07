@@ -6,12 +6,38 @@ import { gfmHeadingId as markedGfmHeadingId } from "marked-gfm-heading-id";
 import { markedHighlight } from "marked-highlight";
 import { markedSmartypants } from "marked-smartypants";
 
+const specHref = `https://github.com/wgsl-tooling-wg/wesl-spec/blob/main/`;
+const wikiHref = `https://github.com/wgsl-tooling-wg/wesl-spec/wiki/`;
+
 const renderer = {
+  // Custom link renderer to transform links that need to work on the public
+  // spec or wiki into links that will work inside the website
   link({ href, title, text }) {
-    // Append '.html' if the link is a relative path and does not have an extension
-    if (!href.match(/\.[a-z]+$/i)) {
-      href += ".html";
+    // extension.
+    const url = new URL(href, "fake://");
+    if (url.protocol === "fake:") {
+      // Local path
+
+      // Skip if the path ends in a slash or contains a `#` anchor
+      if (!(href.endsWith("/") || href.includes("#"))) {
+        if (!href.match(/(\.[a-z]+)$/i)) {
+          // No extension; append .html
+          href += ".html";
+        } else if (href.endsWith(".md")) {
+          // Change .md to .html
+          href = href.replace(/\.md$/, ".html");
+        }
+      }
+    } else if (href.startsWith(specHref)) {
+      // External link to the spec; map to spec/ area
+      href = href.replace(specHref, `/spec/`);
+      href = href.replace(/\.md$/, ".html");
+    } else if (href.startsWith(wikiHref)) {
+      // External link to the wiki; map to docs/ area
+      href = href.replace(wikiHref, `/docs/`);
+      href = href.replace(/\.md$/, ".html");
     }
+
     const titleAttr = title ? ` title="${title}"` : "";
     return `<a href="${href}"${titleAttr}>${text}</a>`;
   },
