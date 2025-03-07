@@ -54,6 +54,21 @@ You will need an LTS version of [Node.js](https://nodejs.org) and [pnpm](https:/
     pnpm run build
     ```
 
+# Deploying the site 
+
+1. Get your own cloudflare account (your account will need to be authorized on the wesl cloudflare account).
+1. Authorize wrangler (to get cmd line access to cloudflare)
+
+    ```sh
+    pnpm wrangler login --browser=false
+    ```
+
+1. Build and deploy to cloudflare:
+
+    ```sh
+    pnpm deploy:site
+    ```
+
 ## License
 
 Except where noted (below and/or in individual files), all code in this repository is dual-licensed under either:

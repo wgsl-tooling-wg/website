@@ -13,6 +13,8 @@
   "scripts": {
     "build": "ori copy src/site.ori, clear files:build",
     "dev": "run-s start",
+    "deploy:site": "run-s build pages:deploy",
+    "pages:deploy": "wrangler pages deploy --project-name wesl-lang build",
     "start": "ori serve watch src, =debug src/site.ori"
   },
   "devDependencies": {
