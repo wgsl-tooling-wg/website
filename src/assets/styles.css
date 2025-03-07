@@ -25,6 +25,7 @@
 
 :root {
   --background-color: #fff;
+  --font-family: "Roboto", "Helvetica", Arial, sans-serif;
   --contrast-text-color: black;
   --muted-background-color: #f6f8fa;
   --primary-color: #0172ad;
@@ -37,7 +38,7 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   display: grid;
-  font-family: "Roboto", "Helvetica", Arial, sans-serif;
+  font-family: var(--font-family);
   font-size: 18px;
   gap: 2rem;
   line-height: 1.5;
@@ -158,6 +159,29 @@ nav {
 main {
   > :first-child {
     margin-top: 0;
+  }
+}
+
+/* Pagefind search UI */
+#search {
+  --pagefind-ui-background: var(--muted-background-color);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border: var(--secondary-color);
+  --pagefind-ui-border-radius: 0;
+  --pagefind-ui-font: var(--font-family);
+  --pagefind-ui-scale: 0.9;
+  --pagefind-ui-text: var(--text-color);
+
+  .pagefind-ui__search-clear {
+    border: none;
+  }
+
+  .pagefind-ui__result-title {
+    font-weight: normal;
+  }
+
+  .pagefind-ui__result-link {
+    color: var(--primary-color);
   }
 }
 
