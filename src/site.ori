@@ -4,6 +4,8 @@
   assets
 
   // All the page bodies, used three ways: for nav, for content, and for search.
+  // This property and the other proprties with names in parentheses are
+  // non-enumerable, so will not be included in the final build output.
   (documents) = {
     index.html = marked.js(index.md)
     search.html = search.ori.html()
@@ -11,10 +13,10 @@
     spec/ = map(spec.ori, { extension: ".md->.html", value: specPage.ori })
   }
 
-  // Left navigation links
+  // HTML for the navigation links
   (nav): nav.ori(documents)
 
-  // Apply base page template to all bodies and include nav
+  // Apply base page template to all bodies and include navigation
   // TODO [Jan]: `from` shouldn't be necessary
   (pages/) = deepMap(from(documents), (document) => page.ori.html(document, nav))
 

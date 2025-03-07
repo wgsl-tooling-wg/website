@@ -1,6 +1,6 @@
 // Return the pages from the wiki, removing the uninteresting ones
 filter(wiki, {
-  ...=true
+  ...=true // default is true
   _Sidebar.md: false
   2024-09-19.md: false
   2024-10-09.md: false
