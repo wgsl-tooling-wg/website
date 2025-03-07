@@ -13,5 +13,8 @@
   "scripts": {
     "build": "ori copy src/site.ori, clear files:build",
     "start": "ori serve watch src, =debug src/site.ori"
+  },
+  "devDependencies": {
+    "wrangler": "^3.114.0"
   }
 }
