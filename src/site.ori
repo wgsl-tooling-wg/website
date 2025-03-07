@@ -7,7 +7,7 @@
   (documents) = {
     index.html = marked.js(index.md)
     docs/ = map(wiki.ori, { extension: ".md->.html", value: docPage.ori })
-    spec/ = map(spec.ori, { extension: ".md->.html", value: docPage.ori })
+    spec/ = map(spec.ori, { extension: ".md->.html", value: specPage.ori })
   }
 
   // Left navigation links

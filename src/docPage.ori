@@ -1,5 +1,9 @@
 // A single page in the docs area
 (markdown, fileName) => {
   title: docPageTitle.ori(fileName)
-  @text: marked.js(markdown) // Convert markdown to HTML for the page body
+  @text:
+    indent`
+      <h1>${ title }</h1>
+      ${ marked.js(markdown) }
+    `
 }
