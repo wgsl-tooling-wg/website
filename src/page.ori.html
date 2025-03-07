@@ -11,19 +11,23 @@
     <link rel="stylesheet" type="text/css" href="/assets/github.css" />
     <link rel="stylesheet" type="text/css" href="/assets/styles.css" />
     <title>${ document/title }</title>
+    <script type="module" src="/assets/main.js"></script>
   </head>
   <body>
-    <div class="logo">
-      <a href="/">
+    <header>
+      <a id="linkHome" href="/">
         <img src="/assets/wesl-notext.svg"> WESL
       </a>
-    </div>
-    <header>
-      <a href="https://github.com/wgsl-tooling-wg/wesl-spec">GitHub</a>
+      <div id="links">
+        <a href="https://github.com/wgsl-tooling-wg/wesl-spec">GitHub</a>
+      </div>
     </header>
-    <nav>
-      ${ nav }
-    </nav>
+    <details id="menu" open>
+      <summary>Table of Contents</summary>
+      <nav>
+        ${ nav }
+      </nav>
+    </details>
     <main>
 ${
   // Main body text, keep left-justified so pre tags work

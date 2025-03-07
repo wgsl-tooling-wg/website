@@ -29,6 +29,7 @@ body {
   --muted-background-color: #f6f8fa;
   --primary-color: #0172ad;
   --secondary-color: #5d6b89;
+  --show-table-of-contents: 0; /* no */
   --text-color: #373c44;
   background-color: var(--background-color);
   color: var(--text-color);
@@ -36,7 +37,6 @@ body {
   font-family: "Roboto", "Helvetica", Arial, sans-serif;
   font-size: 18px;
   gap: 2rem;
-  grid-template-columns: auto 1fr;
   line-height: 1.5;
   max-width: 1200px;
   margin: auto;
@@ -75,7 +75,6 @@ code.hljs {
   padding: 0;
 }
 
-.logo,
 header,
 nav {
   a {
@@ -87,20 +86,25 @@ nav {
   }
 }
 
-.logo {
-  a {
+header {
+  align-items: center;
+  color: var(--contrast-text-color);
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  #linkHome {
     align-items: center;
     color: var(--contrast-text-color);
     display: flex;
     font-weight: bold;
   }
-}
 
-header {
-  align-items: center;
-  color: var(--contrast-text-color);
-  display: grid;
-  justify-content: end;
+  #links {
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: column;
+    justify-content: end;
+  }
 }
 
 nav {   
@@ -133,5 +137,23 @@ nav {
 main {
   > :first-child {
     margin-top: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  body {
+    grid-template-columns: auto 1fr;
+    --show-table-of-contents: 1; /* yes */
+  }
+
+  header {
+    grid-column: 1 / span 2;
+    grid-template-columns: subgrid;
+  }
+
+  #menu {
+    summary {
+      display: none;
+    }
   }
 }
