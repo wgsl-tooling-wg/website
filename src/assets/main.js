@@ -21,6 +21,9 @@ window.addEventListener("load", () => {
 window.addEventListener("pagehide", () => {
   menu.open = false;
 });
+window.addEventListener("pageshow", () => {
+  toggleTableOfContents();
+});
 window.addEventListener("resize", () => {
   toggleTableOfContents();
 });
