@@ -101,6 +101,10 @@ header {
     color: var(--contrast-text-color);
     display: flex;
     font-weight: bold;
+
+    img {
+      height: 2.5rem;
+    }
   }
 
   #links {
