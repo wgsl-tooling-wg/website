@@ -1,0 +1,4 @@
+(markdown) => {
+  title: "Home"
+  @text: marked.js(adjustMdLinks.js(wiki.ori/Home.md, "/docs"))
+}

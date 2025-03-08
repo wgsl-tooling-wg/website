@@ -7,7 +7,7 @@
   // This property and the other proprties with names in parentheses are
   // non-enumerable, so will not be included in the final build output.
   (documents) = {
-    index.html = marked.js(index.md)
+    index.html = index.ori(wiki.ori/Home.md) // Repurpose wiki Home page
     search.html = search.ori.html()
     docs/ = map(wiki.ori, { extension: ".md->.html", value: docPage.ori })
     spec/ = map(spec.ori, { extension: ".md->.html", value: specPage.ori })
