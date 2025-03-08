@@ -1,3 +1,11 @@
+/**
+ * Custom markdown processor
+ *
+ * Origami inlcudes a `mdHtml` builtin for transforming markdown to HTML, but we
+ * need to do some special handling of links in the spec and wiki. Those content
+ * sources need links that work on their own in their respective locations, but
+ * for this site we want relative links to point to pages within the site.
+ */
 import { extension, isUnpackable } from "@weborigami/async-tree";
 import { documentObject, toString } from "@weborigami/origami";
 import highlight from "highlight.js";

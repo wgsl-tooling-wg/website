@@ -5,16 +5,16 @@
 
   // All the pages as objects with properties for title + body HTML. This
   // collection and the others below with names in parentheses are
-  // non-enumerable, so will not be included in the final build output. This
-  // docs and spec areas will end up with some unused pages that aren't exposed
-  // in the navigation.
+  // non-enumerable, so will not be included in the final build output. The docs
+  // and spec areas will end up with some unused pages that aren't exposed in
+  // the navigation.
   (documents) = {
     index.html = index.ori()
     search.html = search.ori.html()
     docs/ = map(wiki, { extension: ".md->.html", value: docPage.ori })
     spec/ = {
       ...map(wesl-spec, { extension: ".md->.html", value: specPage.ori })
-      // Assets for spec pages
+      // Assets for spec pages so assets links still work
       assets/ = wesl-spec/assets
     }
   }
