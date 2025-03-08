@@ -19,12 +19,9 @@
     }
   }
 
-  // HTML for the navigation links
-  (nav): nav.ori(navLinks.yaml)
-
-  // Apply base page template to all bodies and include navigation
+  // Apply base page template to all bodies
   (pages/) = deepMap(from(documents), (value, key) =>
-    extension/match(key, ".html") ? page.ori.html(value, nav) : value
+    extension/match(key, ".html") ? page.ori.html(value) : value
   )
 
   // Merge in all the pages

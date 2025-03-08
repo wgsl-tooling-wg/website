@@ -148,18 +148,15 @@ nav {
     margin: 0;
     padding: 0;
 
-    .area {
-      font-weight: bold;
+    h3:first-child {
+      color: inherit;
+      font-size: 0.95em;
+      margin-bottom: 0;
+      margin-top: 1rem;
     }
 
-    div,
     > * {
       padding: 0.25rem 0;
-    }
-
-    div {
-      font-size: 0.95em;
-      margin-top: 0.5rem;
     }
   }
 }
