@@ -8,6 +8,6 @@
   @text:
     indent`
       <h1>${ title }</h1>
-      ${ marked.js(markdown) }
+      ${ mdHtml(adjustMdLinks.js(markdown)) }
     `
 }

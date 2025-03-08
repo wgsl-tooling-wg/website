@@ -17,21 +17,6 @@ importers:
       '@weborigami/pagefind':
         specifier: 0.0.4
         version: 0.0.4
-      highlight.js:
-        specifier: 11.11.1
-        version: 11.11.1
-      marked:
-        specifier: 15.0.7
-        version: 15.0.7
-      marked-gfm-heading-id:
-        specifier: 4.1.1
-        version: 4.1.1(marked@15.0.7)
-      marked-highlight:
-        specifier: 2.2.1
-        version: 2.2.1(marked@15.0.7)
-      marked-smartypants:
-        specifier: 1.1.9
-        version: 1.1.9(marked@15.0.7)
     devDependencies:
       npm-run-all:
         specifier: ^4.1.5

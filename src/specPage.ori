@@ -9,5 +9,5 @@
     : basename(fileName)/replace(new:RegExp("([A-Z])", "g"), " $1")/trim()
 
   // Convert markdown to HTML for the page body
-  @text: marked.js(markdown)
+  @text: mdHtml(adjustMdLinks.js(markdown))
 }
