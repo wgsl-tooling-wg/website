@@ -1,6 +1,0 @@
-// The site's main index page is a repurposed version of the wiki Home page with
-// the relative links adjusted to point to the /docs area
-() => {
-  title: "Home"
-  @text: marked.js(adjustMdLinks.js(wiki/Home.md, "/docs"))
-}

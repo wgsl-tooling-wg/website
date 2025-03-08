@@ -9,7 +9,7 @@
   // and spec areas will end up with some unused pages that aren't exposed in
   // the navigation.
   (documents) = {
-    index.html = index.ori()
+    index.html = index.ori.html()
     search.html = search.ori.html()
     docs/ = map(wiki, { extension: ".md->.html", value: docPage.ori })
     spec/ = {
