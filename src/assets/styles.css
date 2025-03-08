@@ -112,6 +112,7 @@ header {
 
     img {
       height: 2.5rem;
+      content: url("/assets/logo-horizontal-light.svg");
     }
   }
 
@@ -239,5 +240,13 @@ img[align="left"] {
     --secondary-color: #969eaf;
     --text-color: #c2c7d0;
    color-scheme: dark;
+  }
+
+  header {
+    #linkHome {
+      img {
+        content: url("/assets/logo-horizontal-dark.svg");
+      }
+    }
   }
 }
