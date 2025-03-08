@@ -1,6 +1,6 @@
 [submodule "wiki"]
 	path = wiki
-	url = https://github.com/wgsl-tooling-wg/wesl-spec.wiki.git
+	url = https://github.com/wgsl-tooling-wg/website.wiki.git
 	update = merge
 [submodule "wesl-spec"]
 	path = wesl-spec
