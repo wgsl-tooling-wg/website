@@ -3,22 +3,29 @@
   // Static assets
   assets
 
-  // All the page bodies, used three ways: for nav, for content, and for search.
-  // This property and the other proprties with names in parentheses are
-  // non-enumerable, so will not be included in the final build output.
+  // All the pages as objects with properties for title + body HTML. This
+  // collection and the others below with names in parentheses are
+  // non-enumerable, so will not be included in the final build output. This
+  // docs and spec areas will end up with some unused pages that aren't exposed
+  // in the navigation.
   (documents) = {
-    index.html = index.ori(wiki.ori/Home.md) // Repurpose wiki Home page
+    index.html = index.ori()
     search.html = search.ori.html()
-    docs/ = map(wiki.ori, { extension: ".md->.html", value: docPage.ori })
-    spec/ = map(spec.ori, { extension: ".md->.html", value: specPage.ori })
+    docs/ = map(wiki, { extension: ".md->.html", value: docPage.ori })
+    spec/ = {
+      ...map(wesl-spec, { extension: ".md->.html", value: specPage.ori })
+      // Assets for spec pages
+      assets/ = wesl-spec/assets
+    }
   }
 
   // HTML for the navigation links
-  (nav): nav.ori(documents)
+  (nav): nav.ori(navLinks.yaml)
 
   // Apply base page template to all bodies and include navigation
-  // TODO [Jan]: `from` shouldn't be necessary
-  (pages/) = deepMap(from(documents), (document) => page.ori.html(document, nav))
+  (pages/) = deepMap(from(documents), (value, key) =>
+    extension/match(key, ".html") ? page.ori.html(value, nav) : value
+  )
 
   // Merge in all the pages
   ...pages

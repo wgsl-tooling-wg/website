@@ -1,3 +1,0 @@
-// Convert a docs wiki file name to a page title: remove extension and replace
-// hyphens with spaces: "Foo-Bar.md" -> "Foo Bar"
-(fileName) => basename(fileName)/replaceAll("-", " ")

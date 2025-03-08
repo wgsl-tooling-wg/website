@@ -1,5 +1,13 @@
 // A single page in the specs area
 (markdown, fileName) => {
-  title: specPageTitle.ori(fileName)
-  @text: marked.js(markdown) // Convert markdown to HTML for the page body
+  // Convert a spec area PascalCase file name to a page title: "FooBar.md" ->
+  // "Foo Bar", plus handle special cases
+  title: fileName === "GLOSSARY.md"
+    ? "Glossary"
+    : fileName === "README.md"
+    ? "Spec"
+    : basename(fileName)/replace(new:RegExp("([A-Z])", "g"), " $1")/trim()
+
+  // Convert markdown to HTML for the page body
+  @text: marked.js(markdown)
 }

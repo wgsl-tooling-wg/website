@@ -1,0 +1,37 @@
+#
+# The data for the navigation bar/menu, mapping friendly name to local path
+#
+# If someone's added a new page to the wiki or spec, add it below.
+#
+
+"": # no header for this section
+  Home: /
+
+DOCS:
+  Getting Started: /docs/Getting-Started.html
+  Getting Started (Rust): /docs/Getting-Started-(Rust).html
+  Getting Started (JavaScript): /docs/Getting-Started-(JavaScript).html
+  Authoring Shaders: /docs/Authoring-Shaders.html
+  Authoring Packages: /docs/Authoring-Packages.html
+  Advanced Concepts: /docs/Advanced-Concepts.html
+  Code Examples: /docs/Code-Examples.html
+  Reference: /docs/Reference.html
+  Contributing: /docs/Contributing.html
+  Design: /docs/Design.html
+
+SPEC:
+  About: /spec/README.html
+  Imports: /spec/Imports.html
+  Conditional Translation: /spec/ConditionalTranslation.html
+  Conditional Translation Design: /spec/ConditionalTranslationDesign.html
+  Simple Templating: /spec/SimpleTemplating.html
+  Packaging: /spec/Packaging.html
+  Visibility: /spec/Visibility.html
+  Designing: /spec/Designing.html
+  Generics: /spec/Generics.html
+  Name Mangling: /spec/NameMangling.html
+  Versioning: /spec/Versioning.html
+  Glossary: /spec/GLOSSARY.html
+
+"TRY IT":
+  Playground: https://wesl.thissma.fr

@@ -1,37 +1,22 @@
-// Side navigation is built from the dynamic tree of page bodies
-(tree) => indent`
+// Render a structured set of title/hrefs into navigation links
+(links) => indent`
   <ul>
-    ${ map(tree, (value, key) => 
-      slash/has(key)
-        // A subtree (an area of the site)
-        ? indent`
+    ${ map(links, (pages, areaName) => indent`
+      <li>
+        ${ areaName !== "/"
+          ? indent`
+            <div class="area">${ slash/remove(areaName) }</div>
+          `
+          : ""
+        }
+        <ul>
+          ${ map(pages, (path, pageTitle) => indent`
             <li>
-              <div class="area">${ slash/remove(key) }</div>
-              <ul>
-                ${ map(value, (document, fileName) => indent`
-                  <li>
-                    <a href="/${ key }${ fileName }">${ document/title }</a>
-                  </li>
-                `) }
-              </ul>
+              <a href="${ path }">${ pageTitle }</a>
             </li>
-          ` 
-
-        // A standalone top-level page
-        : indent`
-          <li>
-            <a href="/${ key }">${ value/title }</a>
-          </li>
-        `
-    )}
-
-    <li>
-      <div class="area">try wesl</div>
-      <ul>
-        <li>
-          <a href="https://wesl.thissma.fr">Playground</a>
-        </li>
-      </ul>
-    </li>
+          `) }
+        </ul>
+      </li>
+    ` )}
   </ul>
 `

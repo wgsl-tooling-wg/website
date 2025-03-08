@@ -1,6 +1,10 @@
 // A single page in the docs area
 (markdown, fileName) => {
-  title: docPageTitle.ori(fileName)
+  // Convert a wiki file name to a page title: remove extension and replace
+  // hyphens with spaces: "Foo-Bar.md" -> "Foo Bar"
+  title: basename(fileName)/replaceAll("-", " ")
+
+  // Add the page title to the body HTML as a heading
   @text:
     indent`
       <h1>${ title }</h1>
