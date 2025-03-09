@@ -65,9 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("a").forEach((anchor) => {
     // Get link destination without the extension
     const anchorUrl = new URL(anchor.href, window.location.origin);
-    const anchorPath = anchorUrl.pathname.replace(/\.html$/, "");
-    if (anchorPath === currentPath) {
-      anchor.setAttribute("aria-current", "page");
+    if (anchorUrl.origin === window.location.origin) {
+      const anchorPath = anchorUrl.pathname.replace(/\.html$/, "");
+      if (anchorPath === currentPath) {
+        anchor.setAttribute("aria-current", "page");
+      }
     }
   });
 });
