@@ -34,7 +34,7 @@ export default function adjustMdLinks(input, basePath = "") {
     const internal = url.protocol === "fake:";
     return internal
       ? adjustInternalLink(match, text, href, basePath)
-      : adjustExternalLink(match, href);
+      : adjustExternalLink(match, text, href);
   });
 }
 
@@ -42,17 +42,16 @@ function adjustExtension(href) {
   return href.replace(/\.md$/, ".html");
 }
 
-function adjustExternalLink(match, href) {
+function adjustExternalLink(match, text, href) {
+  let adjustedHref;
   if (href.startsWith(specHref)) {
     // External link to the spec; map to spec/ area
-    href = href.replace(specHref, `/spec/`);
-    href = adjustExtension(href);
+    adjustedHref = adjustExtension(href.replace(specHref, `/spec/`));
   } else if (href.startsWith(wikiHref)) {
     // External link to the wiki; map to docs/ area
-    href = href.replace(wikiHref, `/docs/`);
-    href = adjustExtension(href);
+    adjustedHref = adjustExtension(href.replace(wikiHref, `/docs/`));
   }
-  return match;
+  return adjustedHref ? `[${text}](${adjustedHref})` : match;
 }
 
 function adjustInternalLink(match, text, href, basePath) {
