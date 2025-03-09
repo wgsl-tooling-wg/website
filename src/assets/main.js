@@ -60,9 +60,13 @@ document.addEventListener("click", (event) => {
  * Add `aria-current` to links that point to the current page
  */
 document.addEventListener("DOMContentLoaded", () => {
+  // Remove any extension from the current pathname
+  const currentPath = window.location.pathname.replace(/\.html$/, "");
   document.querySelectorAll("a").forEach((anchor) => {
+    // Get link destination without the extension
     const anchorUrl = new URL(anchor.href, window.location.origin);
-    if (anchorUrl.pathname === window.location.pathname) {
+    const anchorPath = anchorUrl.pathname.replace(/\.html$/, "");
+    if (anchorPath === currentPath) {
       anchor.setAttribute("aria-current", "page");
     }
   });
