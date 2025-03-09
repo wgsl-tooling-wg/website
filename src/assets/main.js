@@ -24,7 +24,7 @@ let sideNav;
 let navMenu;
 
 // Wait until the navigation elements are available
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
   // Copy the contents of the side navigation to the navigation menu
   sideNav = document.getElementById("sideNav");
   navMenu = document.getElementById("navMenu");
@@ -54,4 +54,16 @@ document.addEventListener("click", (event) => {
   if (navMenu.open && !navMenu.contains(event.target)) {
     navMenu.open = false;
   }
+});
+
+/**
+ * Add `aria-current` to links that point to the current page
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("a").forEach((anchor) => {
+    const anchorUrl = new URL(anchor.href, window.location.origin);
+    if (anchorUrl.pathname === window.location.pathname) {
+      anchor.setAttribute("aria-current", "page");
+    }
+  });
 });

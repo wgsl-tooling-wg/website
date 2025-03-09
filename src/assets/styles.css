@@ -53,10 +53,6 @@ body {
   max-width: 1200px;
   margin: auto;
   padding: 2rem;
-
-  > * {
-    overflow-x: hidden;
-  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -124,6 +120,8 @@ header {
 }
 
 main {
+  overflow-x: hidden;
+
   > :first-child {
     margin-top: 0;
   }
@@ -145,9 +143,10 @@ nav {
   ul {
     list-style: none;
     margin: 0;
+    overflow: visible;
     padding: 0;
 
-    h3:first-child {
+    h3 {
       color: inherit;
       font-size: 0.95em;
       margin-bottom: 0;
@@ -156,6 +155,20 @@ nav {
 
     > * {
       padding: 0.25rem 0;
+    }
+  }
+
+  li {
+    position: relative;
+
+    &:has(> [aria-current]) {
+      &::before {
+        content: url(/assets/svg/triangle.svg);
+        height: 0.5em;
+        left: -1em;
+        position: absolute;
+        width: 0.5em;
+      }
     }
   }
 }
@@ -168,7 +181,7 @@ nav {
     background: var(--background-color);
     border: 1px solid var(--secondary-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 1em;
+    padding: 0.5em 1.5em;
     position: absolute;
     z-index: 10; /* Pagefind magnifying glass icon is 9 */
   }
@@ -241,7 +254,7 @@ img[align="left"] {
   header {
     #linkHome {
       img {
-        content: url("/assets/logo-horizontal-dark.svg");
+        content: url("/assets/svg/logo-horizontal-dark.svg");
       }
     }
   }
