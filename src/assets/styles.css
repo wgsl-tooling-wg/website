@@ -3,24 +3,25 @@
  */
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 100 900;
-  src: url('/assets/fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+  src: url("/assets/fonts/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: italic;
   font-weight: 100 900;
-  src: url('/assets/fonts/Roboto-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  src: url("/assets/fonts/Roboto-Italic-VariableFont_wdth,wght.ttf")
+    format("truetype");
 }
 
 @font-face {
-  font-family: 'Roboto Mono';
+  font-family: "Roboto Mono";
   font-style: normal;
   font-weight: 100 900;
-  src: url('/assets/fonts/RobotoMono-VariableFont_wght.ttf') format('truetype');
+  src: url("/assets/fonts/RobotoMono-VariableFont_wght.ttf") format("truetype");
 }
 
 /**
@@ -55,7 +56,12 @@ body {
   padding: 2rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--contrast-text-color);
 
   &:first-child {
@@ -67,7 +73,8 @@ a {
   color: var(--primary-color);
 }
 
-pre, code {
+pre,
+code {
   font-family: "Roboto Mono", monospace;
   font-size: 0.9em;
   overflow: auto;
@@ -135,7 +142,7 @@ main {
   display: none;
 }
 
-nav {   
+nav {
   a {
     color: var(--secondary-color);
   }
@@ -174,7 +181,7 @@ nav {
 }
 
 #navMenu {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   cursor: default;
 
   nav {
@@ -248,13 +255,13 @@ img[align="left"] {
     --primary-color: #01aaff;
     --secondary-color: #969eaf;
     --text-color: #c2c7d0;
-   color-scheme: dark;
+    color-scheme: dark;
   }
 
   header {
     #linkHome {
       img {
-        content: url("/assets/svg/logo-horizontal-dark.svg");
+        content: url("/assets/svg/logo/logo-horizontal-dark.svg");
       }
     }
   }
