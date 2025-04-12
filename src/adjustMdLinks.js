@@ -26,16 +26,27 @@ const wikiHref = `https://github.com/wgsl-tooling-wg/wesl-spec/wiki/`;
  */
 export default function adjustMdLinks(input, basePath = "") {
   const markdown = toString(input);
-  // Matches markdown links of the form `[text](href)`
+  // Matches markdown links of the form `[link](href)`
   const linkRegex = /\[(?<text>[^\]]+)\]\((?<href>[^)]+)\)/g;
-  return markdown.replace(linkRegex, (match, text, href) => {
+  return markdown.replace(linkRegex, (match, text, href, offset) => {
     // Test to see if the link is internal or external
-    const url = new URL(href, "fake://");
+    const url = fakeUrl(href, match);
     const internal = url.protocol === "fake:";
     return internal
       ? adjustInternalLink(match, text, href, basePath)
       : adjustExternalLink(match, text, href);
   });
+}
+
+/** Create a url so we can test whether an href is relative or absolute */
+function fakeUrl(href, link) {
+  let url;
+  try {
+    url = new URL(href, "fake://");
+  } catch (e) {
+    throw new Error(`Invalid href: '${href}'  in link: '${link}'`);
+  }
+  return url;
 }
 
 function adjustExtension(href) {
