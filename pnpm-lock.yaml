@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@weborigami/async-tree':
-        specifier: 0.2.11
-        version: 0.2.11
+        specifier: 0.3.0
+        version: 0.3.0
       '@weborigami/origami':
-        specifier: 0.2.11
-        version: 0.2.11
+        specifier: 0.3.0
+        version: 0.3.0
       '@weborigami/pagefind':
         specifier: 0.0.4
         version: 0.0.4
@@ -74,8 +74,8 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@emnapi/runtime@1.3.1':
-    resolution: {integrity: sha512-kEBmG8KyqtxJZv+ygbEim+KCGtIq1fC22Ms3S4ziXmYKm8uyoLX0MHONVKwp+9opg390VaKRNt4a7A9NwmpNhw==}
+  '@emnapi/runtime@1.4.3':
+    resolution: {integrity: sha512-pBPWdu6MLKROBX05wSNKcNb++m5Er+KQ9QkB+WVM+pW2Kx9hoSrVTnu3BdkI5eBLZoKu/J6mW/B6i6bJB2ytXQ==}
 
   '@esbuild-plugins/node-globals-polyfill@0.2.3':
     resolution: {integrity: sha512-r3MIryXDeXDOZh7ih1l/yE9ZLORCd5e8vWg02azWRGj5SPTuoh69A2AIyn0Z31V/kHBfZ4HgWJ+OK3GTTwLmnw==}
@@ -366,14 +366,17 @@ packages:
   '@weborigami/async-tree@0.0.65':
     resolution: {integrity: sha512-cpi8bRkbVVH7JoDGL8UprtCpoH5VKLv985XeVa0HReGKZgoRz2MP7viAuJuf/O2LrK8B2u0BASMhoJtdpyh0iA==}
 
-  '@weborigami/async-tree@0.2.11':
-    resolution: {integrity: sha512-+FwTwDSsat5LpGvoJFqJF8/hh850xE20SF0eog8Dq3eFb5q5iHEBgxhTg782EZfKtYnBqWOfKr5LIuN89VpcAQ==}
+  '@weborigami/async-tree@0.3.0':
+    resolution: {integrity: sha512-V0m2tOR4d7zIyY780B7BC6e1SC9ctdZF7PmE8KvckONsGwB8K3hzulWICmlanUx+8iWULd8LMVQYWSF82Osv6w==}
 
-  '@weborigami/language@0.2.11':
-    resolution: {integrity: sha512-HXe4k/ytRDpvqZP/I+844pW5he2NFtf6426US8GwDuYvC+wwucSaPT8k1yco0n8pSYmsX2ASrOrHq/KQDWcRRA==}
+  '@weborigami/json-feed-to-rss@1.0.0':
+    resolution: {integrity: sha512-PcHME0TAMUFUe6xvo6Y5PUv38X5j3KSFKk3tOXd59R3tezJiEe7bOj7GC1Fm3dTQkKfsMyvZC0Cwtu9KRrjL0w==}
 
-  '@weborigami/origami@0.2.11':
-    resolution: {integrity: sha512-AAseG51d2kvFzN4YRSfGLqSbaamRU6P/AQ3CMyZ4G1UV/WZTFpEkc6KXrinmU0CNq5DB7ADVO5pjWP6odQr6gg==}
+  '@weborigami/language@0.3.0':
+    resolution: {integrity: sha512-AKTc0cKErpi33dg8iX0z94FSu8QTDjVd26Zb+jPmXay5kcMYpceJ6svODeICo24LzjzEoCbt6MDMueqIpGDG5Q==}
+
+  '@weborigami/origami@0.3.0':
+    resolution: {integrity: sha512-PDn2vFuOmfORPyoPCDtttwfF0uj4B9qgHMDR8DSXUUaN33Wv+D1lr059PJFxwtOQ9aGH6p9puofA35IqLwNsqA==}
     hasBin: true
 
   '@weborigami/pagefind@0.0.4':
@@ -382,8 +385,8 @@ packages:
   '@weborigami/types@0.0.65':
     resolution: {integrity: sha512-tNYk3oluVOt5GYsw4itRl2LMVsdImPGaEM4KNiSuscJYHs3YvRr4qY1iqqUhxWwOnMIoC+/d1uL6DUm0oh5mAg==}
 
-  '@weborigami/types@0.2.11':
-    resolution: {integrity: sha512-0FOMN5a9kDMDzOeDNswtzY+d4djCZvPAOvaHoCS7fY23L0BRp6Ppg+g5+0qGUHfylohTmpgAvVZ4F+5GNbseqQ==}
+  '@weborigami/types@0.3.0':
+    resolution: {integrity: sha512-Sss/YQmfjFesAby6/zNawPukwh5CT4t/9XnktmmavwrmE97YmQ5GYGBFNjzjPMdmqTU6pimAr9rGuYTeTZG4zw==}
 
   acorn-walk@8.3.2:
     resolution: {integrity: sha512-cjkyv4OtNCIeqhHrfS81QWXoCBPExR/J62oyEqepVw8WaQeSqpW2uhuLPh1m9eWhDuOo/jUXVTlifvesOWp/4A==}
@@ -1180,7 +1183,7 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@emnapi/runtime@1.3.1':
+  '@emnapi/runtime@1.4.3':
     dependencies:
       tslib: 2.8.1
     optional: true
@@ -1329,7 +1332,7 @@ snapshots:
 
   '@img/sharp-wasm32@0.33.5':
     dependencies:
-      '@emnapi/runtime': 1.3.1
+      '@emnapi/runtime': 1.4.3
     optional: true
 
   '@img/sharp-win32-ia32@0.33.5':
@@ -1366,22 +1369,25 @@ snapshots:
     dependencies:
       '@weborigami/types': 0.0.65
 
-  '@weborigami/async-tree@0.2.11':
+  '@weborigami/async-tree@0.3.0':
     dependencies:
-      '@weborigami/types': 0.2.11
+      '@weborigami/types': 0.3.0
 
-  '@weborigami/language@0.2.11':
+  '@weborigami/json-feed-to-rss@1.0.0': {}
+
+  '@weborigami/language@0.3.0':
     dependencies:
-      '@weborigami/async-tree': 0.2.11
-      '@weborigami/types': 0.2.11
+      '@weborigami/async-tree': 0.3.0
+      '@weborigami/types': 0.3.0
       watcher: 2.3.1
       yaml: 2.7.0
 
-  '@weborigami/origami@0.2.11':
+  '@weborigami/origami@0.3.0':
     dependencies:
-      '@weborigami/async-tree': 0.2.11
-      '@weborigami/language': 0.2.11
-      '@weborigami/types': 0.2.11
+      '@weborigami/async-tree': 0.3.0
+      '@weborigami/json-feed-to-rss': 1.0.0
+      '@weborigami/language': 0.3.0
+      '@weborigami/types': 0.3.0
       exif-parser: 0.1.12
       graphviz-wasm: 3.0.2
       highlight.js: 11.11.1
@@ -1399,7 +1405,7 @@ snapshots:
 
   '@weborigami/types@0.0.65': {}
 
-  '@weborigami/types@0.2.11': {}
+  '@weborigami/types@0.3.0': {}
 
   acorn-walk@8.3.2: {}
 

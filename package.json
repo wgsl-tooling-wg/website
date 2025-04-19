@@ -2,8 +2,8 @@
   "name": "wesl-site",
   "type": "module",
   "dependencies": {
-    "@weborigami/async-tree": "0.2.11",
-    "@weborigami/origami": "0.2.11",
+    "@weborigami/async-tree": "0.3.0",
+    "@weborigami/origami": "0.3.0",
     "@weborigami/pagefind": "0.0.4"
   },
   "scripts": {
