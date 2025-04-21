@@ -67,6 +67,16 @@ h6 {
   &:first-child {
     margin-top: 0;
   }
+
+  a {
+    visibility: hidden;
+  }
+
+  &:hover {
+    a {
+      visibility: visible;
+    }
+  }
 }
 
 a {

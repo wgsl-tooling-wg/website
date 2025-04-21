@@ -1,0 +1,7 @@
+// The set of things we want to do to markdown, in this order:
+//
+// 1. Adjust links between spec and docs areas
+// 2. Convert markdown to HTML
+// 3. Add header links
+//
+(markdown, basePath) => headerLinks.js(mdHtml(adjustMdLinks.js(markdown, scope:basePath)))
