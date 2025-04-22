@@ -39,7 +39,6 @@
   --muted-background-color: #f6f8fa;
   --primary-color: #0172ad;
   --secondary-color: #5d6b89;
-  --show-table-of-contents: 0; /* no */
   --text-color: #373c44;
 }
 
@@ -245,7 +244,6 @@ img[align="left"] {
 @media (min-width: 1000px) {
   body {
     grid-template-columns: auto 1fr;
-    --show-table-of-contents: 1; /* yes */
     column-gap: 0;
   }
 
