@@ -136,7 +136,6 @@ header {
 
   #links {
     display: grid;
-    padding-left: 2rem;
     gap: 1rem;
     grid-auto-flow: column;
     justify-content: end;
@@ -145,7 +144,6 @@ header {
 
 main {
   overflow-x: hidden;
-  padding-left: 2rem;
 
   > :first-child {
     margin-top: 0;
@@ -254,6 +252,9 @@ img[align="left"] {
   header {
     grid-column: 1 / span 2;
     grid-template-columns: subgrid;
+    #links {
+      padding-left: 2rem;
+    }
   }
 
   #navMenu {
@@ -263,6 +264,11 @@ img[align="left"] {
   #sideNav {
     display: block;
   }
+
+  main {
+    padding-left: 2rem;
+  }
+
 }
 
 /* Dark mode */
