@@ -10,8 +10,8 @@ export default function headerLinks(html) {
   return html.replace(
     headerRegex,
     (match, open, level, id, children, close) => {
-      const link = ` <a href="#${id}">#</a>`;
-      return `${open}${children}${link}${close}`;
+      const link = ` <a class="anchor" href="#${id}">#</a>`;
+      return `${open}${link}${children}${close}`;
     }
   );
 }

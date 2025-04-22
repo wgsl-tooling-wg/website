@@ -63,17 +63,23 @@ h4,
 h5,
 h6 {
   color: var(--contrast-text-color);
+  position: relative;
 
   &:first-child {
     margin-top: 0;
   }
 
-  a {
+  a.anchor {
     visibility: hidden;
+    left: -.75em;
+    width: 100%;
+    font-weight: normal;
+    text-decoration: none;
+    position: absolute;
   }
 
   &:hover {
-    a {
+    a.anchor {
       visibility: visible;
     }
   }
@@ -130,6 +136,7 @@ header {
 
   #links {
     display: grid;
+    padding-left: 2rem;
     gap: 1rem;
     grid-auto-flow: column;
     justify-content: end;
@@ -138,6 +145,7 @@ header {
 
 main {
   overflow-x: hidden;
+  padding-left: 2rem;
 
   > :first-child {
     margin-top: 0;
@@ -240,6 +248,7 @@ img[align="left"] {
   body {
     grid-template-columns: auto 1fr;
     --show-table-of-contents: 1; /* yes */
+    column-gap: 0;
   }
 
   header {
