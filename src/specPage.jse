@@ -6,8 +6,8 @@
     ? "Glossary"
     : fileName === "README.md"
     ? "Spec"
-    : basename(fileName)/replace(new:RegExp("([A-Z])", "g"), " $1")/trim()
+    : Origami.basename(fileName).replace(new RegExp("([A-Z])", "g"), " $1").trim()
 
   // Convert markdown to HTML for the page body
-  @text: processMarkdown.ori(markdown)
+  _body: <processMarkdown.jse>(markdown)
 }

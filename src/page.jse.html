@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/github.css" media="(prefers-color-scheme: light)" />
     <link rel="stylesheet" type="text/css" href="/assets/github-dark.css" media="(prefers-color-scheme: dark)" />
     <link rel="stylesheet" type="text/css" href="/assets/styles.css" />
-    <title>${ _/title }</title>
+    <title>${ _.title }</title>
     <script type="module" src="/assets/main.js"></script>
     <link rel="icon" href="/assets/svg/logo/logomark-light.svg">
   </head>
@@ -24,12 +24,12 @@
       <summary>Table of Contents</summary>
     </details>
     <nav id="sideNav">
-      ${ nav.html }
+      ${ <nav.html> }
     </nav>
     <main>
 ${
   // Main body text, keep left-justified so pre tags work
-  _/@text
+  _._body
 }
     </main>
   </body>

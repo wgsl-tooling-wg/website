@@ -7,11 +7,11 @@
     "@weborigami/pagefind": "0.0.5"
   },
   "scripts": {
-    "build": "ori copy src/site.ori, clear files:build",
+    "build": "ori copy src/site.jse, clear files:build",
     "dev": "run-s start",
     "deploy:site": "run-s build pages:deploy",
     "pages:deploy": "wrangler pages deploy --project-name wesl-lang build",
-    "start": "ori serve watch ., =debug src/site.ori"
+    "start": "ori serve watch ., =debug src/site.jse"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",
