@@ -2,9 +2,9 @@
   "name": "wesl-site",
   "type": "module",
   "dependencies": {
-    "@weborigami/async-tree": "0.3.2",
-    "@weborigami/origami": "0.3.2",
-    "@weborigami/pagefind": "0.0.5"
+    "@weborigami/async-tree": "0.4.1",
+    "@weborigami/origami": "0.4.1",
+    "@weborigami/pagefind": "0.0.12"
   },
   "scripts": {
     "build": "ori copy src/site.ori, clear files:build",
