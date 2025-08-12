@@ -4,4 +4,4 @@
 // 2. Convert markdown to HTML
 // 3. Add header links
 //
-(markdown, basePath) => <headerLinks.js>(Origami.mdHtml(<adjustMdLinks.js>(markdown, basePath)))
+(markdown, basePath) => headerLinks.js(Origami.mdHtml(adjustMdLinks.js(markdown, basePath)))

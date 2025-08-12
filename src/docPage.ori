@@ -8,6 +8,6 @@
   _body:
     Tree.indent`
       <h1>${ title }</h1>
-      ${ <processMarkdown.jse>(markdown) }
+      ${ <processMarkdown.ori>(markdown) }
     `
 }

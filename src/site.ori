@@ -1,32 +1,32 @@
 // This file defines the overall structure of the WESL site
 {
   // Static assets
-  <assets>
-
+  assets/
+  
   // All the pages as objects with properties for title + body HTML. This
   // collection and the others below with names in parentheses are
   // non-enumerable, so will not be included in the final build output. The docs
   // and spec areas will end up with some unused pages that aren't exposed in
   // the navigation.
   (documents) = {
-    index.html = <index.jse.html/>
-    search.html = <search.jse.html/>
-    docs/ = Tree.map(<wiki>, { extension: ".md->.html", value: <docPage.jse> })
+    index.html = index.ori.html/
+    search.html = search.ori.html/
+    docs/ = Tree.map(wiki, { extension: ".md->.html", value: docPage.ori })
     spec/ = {
-      ...Tree.map(<wesl-spec>, { extension: ".md->.html", value: <specPage.jse> })
+      ...Tree.map(wesl-spec, { extension: ".md->.html", value: specPage.ori })
       // Assets for spec pages so assets links still work
-      assets/ = <wesl-spec/assets>
+      assets/ = wesl-spec/assets
     }
   }
 
   // Apply base page template to all bodies
   (pages/) = Tree.deepMap(Tree.from(documents), (value, key) =>
-    Origami.extension.match(key, ".html") ? <page.jse.html>(value) : value
+    Origami.extension.match(key, ".html") ? page.ori.html(value) : value
   )
 
   // Merge in all the pages
   ...pages
 
   // Create search indexes/resources the first time they're requested
-  pagefind/ = Origami.once(() => <package:@weborigami/pagefind>(pages))
+  pagefind/ = Origami.once(() => package:@weborigami/pagefind(pages))
 }
