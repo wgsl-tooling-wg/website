@@ -11,9 +11,9 @@
   (documents) = {
     index.html = index.ori.html/
     search.html = search.ori.html/
-    docs/ = Tree.map(wiki, { extension: ".md->.html", value: docPage.ori })
+    docs/ = Tree.mapExtension(wiki, ".md->.html", { value: docPage.ori })
     spec/ = {
-      ...Tree.map(wesl-spec, { extension: ".md->.html", value: specPage.ori })
+      ...Tree.mapExtension(wesl-spec, ".md->.html", { value: specPage.ori })
       // Assets for spec pages so assets links still work
       assets/ = wesl-spec/assets
     }
