@@ -1,0 +1,153 @@
+:root {
+  --slidev-theme-primary: #2a9d8f;
+  --bg: #f8f7f4;
+  --fg: #2d2d2d;
+  --border: #ccc;
+  --accent-cyan: #2a9d8f;
+  --accent-purple: #7c3aed;
+  --accent-blue: #2563eb;
+  --accent-orange: #ea580c;
+}
+
+/* Light off-white background */
+.slidev-layout {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Typography */
+h1, h2, h3 {
+  letter-spacing: 0.08em;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 2.5em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3em;
+  margin-bottom: 0.8em;
+}
+
+/* Links */
+a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Geometric boxes */
+.box {
+  border: 1px solid var(--border);
+  padding: 1.2em;
+  position: relative;
+}
+
+/* Corner decorations */
+.box::before,
+.box::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--border);
+}
+
+.box::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.box::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Code blocks */
+.slidev-code {
+  border: 1px solid var(--border);
+}
+
+/* Inline code */
+:not(pre) > code {
+  background: #e8e8e8;
+  color: #444;
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Bold emphasis */
+strong {
+  font-weight: 600;
+}
+
+/* Indent paragraphs under H3 */
+h3 + p {
+  margin-left: 1.5em;
+  margin-top: 0.3em;
+}
+
+/* Grid layout helpers */
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+.text-sm {
+  font-size: 0.875em;
+}
+
+.text-2xl {
+  font-size: 1.5em;
+}
+
+.text-gray-400 {
+  color: #9ca3af;
+}
+
+.text-fg {
+  color: var(--fg);
+}

@@ -2,6 +2,11 @@
 {
   // Static assets
   assets/
+
+  // Slide decks (built Slidev presentations, served as-is)
+  presentations/ = {
+    wgsl-test-2026-01-13/ = ../presentations/wgsl-test-2026-01-13/dist
+  }
   
   // All the pages as objects with properties for title + body HTML. This
   // collection and the others below with names in parentheses are
