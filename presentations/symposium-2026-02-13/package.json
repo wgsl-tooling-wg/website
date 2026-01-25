@@ -1,0 +1,17 @@
+{
+  "name": "symposium-2026-02-13-slides",
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /presentations/symposium-2026-02-13/",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.11.5",
+    "@slidev/theme-default": "^0.25.0",
+    "lygia": "^1.4.1",
+    "wesl-plugin": "^0.6.65",
+    "wgsl-edit": "^0.0.7",
+    "wgsl-play": "^0.0.23"
+  }
+}
