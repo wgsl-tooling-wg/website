@@ -7,7 +7,9 @@
     "@weborigami/pagefind": "0.0.15"
   },
   "scripts": {
-    "build": "ori copy src/site.ori, clear files:build",
+    "build": "run-s build:packages build:site",
+    "build:site": "ori copy src/site.ori, clear files:build",
+    "build:packages": "pnpm -r --if-present build",
     "dev": "run-s start",
     "deploy:site": "run-s build pages:deploy",
     "pages:deploy": "wrangler pages deploy --project-name wesl-lang build",
