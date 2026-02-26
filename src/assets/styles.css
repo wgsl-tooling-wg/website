@@ -258,6 +258,24 @@ img[align="left"] {
   }
 }
 
+.presentation-links {
+font-size: .8em;
+  font-weight: normal;
+  margin-left: 1.5em;
+
+  a {
+    position: relative;
+    z-index: 1;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-left: 0.5em;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 /* Desktop */
 /* This breakpoint width should match what's in page.ori.html */
 @media (min-width: 1000px) {
