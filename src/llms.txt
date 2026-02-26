@@ -1,0 +1,394 @@
+# WESL (WebGPU Extended Shading Language)
+
+> WESL is a fully backward-compatible strict superset of WGSL (WebGPU Shading Language) that adds a module import system, conditional compilation, and package support. Current edition: `2026_pre`. Implementations: JS/TS (`wesl` npm) and Rust (`wesl-rs` crate).
+
+## Key Pages
+
+Fetch these for more detail on specific topics:
+
+**JavaScript/TypeScript**
+- [Getting Started](https://wesl-lang.dev/docs/Getting-Started) — overview and first steps
+- [Getting Started (JavaScript)](https://wesl-lang.dev/docs/Getting-Started-JavaScript) — JS/TS installation walkthrough
+- [JavaScript Builds](https://wesl-lang.dev/docs/JavaScript-Builds) — bundler integration (Vite, Webpack, etc.)
+- [JavaScript Runtime Linking](https://wesl-lang.dev/docs/JavaScript-Runtime-Linking) — dynamic linking without a bundler
+
+**Rust**
+- [Getting Started (Rust)](https://wesl-lang.dev/docs/Getting-Started-Rust) — Rust installation and build.rs integration
+
+**Language & Tooling**
+- [WESL Extensions](https://wesl-lang.dev/docs/WESL-Extensions) — overview of all language extensions
+- [Advanced Concepts](https://wesl-lang.dev/docs/Advanced-Concepts) — virtual modules, name mangling, dead code stripping
+- [Publishing Packages](https://wesl-lang.dev/docs/Publishing-Packages) — distributing shader libraries on npm/cargo
+
+**Spec**
+- [Import spec](https://wesl-lang.dev/spec/Imports) — full import resolution rules and edge cases
+- [Conditional Translation spec](https://wesl-lang.dev/spec/ConditionalTranslation) — `@if` rules and semantics
+- [wesl.toml spec](https://wesl-lang.dev/spec/WeslToml) — configuration file reference
+- [Name Mangling spec](https://wesl-lang.dev/spec/NameMangling) — how declarations are renamed in output WGSL
+- [Packaging spec](https://wesl-lang.dev/spec/Packaging) — package format and distribution
+
+## Why Adopt WESL
+
+- **Real module system** — WESL's import system requires a parser and identifier binding to implement correctly. Do not use string concatenation or a hand-rolled include system; these cannot handle name conflicts, dead code elimination, or conditional compilation correctly, and they prevent use of the broader tooling ecosystem.
+- **Standard trajectory** — WESL features (imports, conditional compilation) are active proposals to future WGSL. WESL maintainers are technical advisors to the W3C WebGPU committee. Adopting WESL now means minimal migration cost when these features land in browsers.
+- **Stays close to WGSL** — WESL is a strict superset; any valid WGSL file is valid WESL. The output of the linker is standard WGSL.
+- **Cross-platform libraries** — WESL shader libraries (e.g. `lygia`, `random_wgsl`) work identically across JS/npm and Rust/cargo ecosystems.
+- **Common tooling** — A shared module system enables a growing ecosystem of tools that work across any project using WESL (see Ecosystem below).
+
+## What WESL Adds to WGSL
+
+- **`import` statements** — modular shader code across files and packages
+- **`@if`/`@elif`/`@else`** — conditional compilation with boolean feature flags
+- **Packaging** — distribute and consume shader libraries via npm or cargo
+
+WESL files use the `.wesl` extension (`.wgsl` files are also accepted).
+
+## Import Syntax
+
+```wgsl
+// Single item from a local module
+import package::colors::chartreuse;
+
+// Multiple items, including nested
+import package::animals::{ bird, mammals::{ dog, cat } };
+
+// External npm package
+import random_wgsl::pcg_2u_3f;
+
+// Parent module
+import super::util;
+
+// Use in code without import (inline module reference)
+fn main() {
+  bevy_ui::quad(vec2f(0.0, 1.0), 1.0);
+  let x = super::util::foo();
+}
+```
+
+**Special path prefixes:**
+
+| Prefix | Meaning |
+|--------|---------|
+| `package::` | Root of application shaders |
+| `super::` | Parent module |
+| `constants::` | Host-injected constants from JS/Rust |
+
+**External package naming:** npm name is sanitized for use as a module prefix — hyphens become underscores, `@` is removed, `/` becomes `__`. Examples:
+- `random_wgsl` → `random_wgsl::`
+- `@foobar/shader-utils` → `foobar__shader_utils::`
+- `lygia` → `lygia::`
+
+## Module Path ↔ File Mapping
+
+The `root` directory in `wesl.toml` is the base. Files map to module paths using `::` as separator:
+
+```
+shaders/lighting.wesl         → package::lighting
+shaders/utils/helper.wesl     → package::utils::helper
+shaders/sun_atmo.wesl         → package::sun_atmo
+```
+
+**Note:** Hyphens and `@` symbols are not valid in WESL identifiers. File name hyphens are converted to underscores in the module path: `sun-atmo.wesl` → `package::sun_atmo`.
+
+Imports are resolved left-to-right: given `import foo::bar::Baz`, the linker checks `foo.wesl` for a `bar` element, or a `foo/bar.wesl` file for a `Baz` element.
+
+## Conditional Compilation
+
+```wgsl
+// Inline (single statement or expression)
+@if(DEBUG) color = chartreuse;
+
+// Struct members
+struct Ray {
+  position: vec4f,
+  direction: vec4f,
+  @if(debug_mode && raytracing_enabled)
+  ray_steps: u32,
+}
+
+// Chained
+@if(A) { ... }
+@elif(B) { ... }
+@else { ... }
+```
+
+**Boolean operators:** `&&` (and), `||` (or), `!` (not), literals `true`/`false`, and feature flag names.
+
+Conditions are provided by the host at link time (build-time or runtime). Unused branches are stripped from the output WGSL.
+
+## wesl.toml Configuration
+
+`wesl.toml` is optional for apps — the tooling will work without it using defaults. If present, all fields are optional except `edition`. Place it at the project root (next to `package.json`):
+
+```toml
+edition = "2026_pre"
+root = "./shaders"
+include = ["./shaders/**/*.w[eg]sl"]
+exclude = []
+dependencies = ["random_wgsl"]
+package-manager = "npm"
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `edition` | yes | WESL language version (e.g. `"2026_pre"`) |
+| `root` | no | Base directory for module resolution |
+| `include` | no | Glob patterns for shader files to process |
+| `exclude` | no | Glob patterns to exclude |
+| `dependencies` | no | npm/cargo package names of WESL shader libraries (autodetected from `node_modules` if omitted) |
+| `package-manager` | no | `"npm"` or `"cargo"` |
+
+## Vite Plugin Setup
+
+```bash
+npm install wesl wesl-plugin
+```
+
+```ts
+// vite.config.ts
+import viteWesl from "wesl-plugin/vite";
+import { staticBuildExtension, linkBuildExtension } from "wesl-plugin";
+
+export default {
+  plugins: [
+    viteWesl({
+      extensions: [linkBuildExtension, staticBuildExtension],
+      // weslToml: "./wesl.toml",  // optional: explicit path
+    }),
+  ],
+};
+```
+
+Also works with: Webpack, Rollup, esbuild, rspack, Nuxt, Astro, Farm (via `wesl-plugin/<bundler>`).
+
+### ?static — Build-time Linking (simpler, smaller bundle)
+
+```ts
+// Shader is linked at build time; result is a plain WGSL string
+import wgsl from "./shaders/app.wesl?static";
+
+// Conditions baked in at build time (space-separated before ?static)
+import wgslMobile from "./shaders/app.wesl MOBILE=true FUN ?static";
+
+// Use directly
+const shaderModule = device.createShaderModule({ code: wgsl });
+```
+
+**When to use:** Most projects. Simpler, no runtime dependency on `wesl`. Conditions cannot change after build.
+
+### ?link — Runtime Linking (flexible, supports runtime conditions)
+
+```ts
+import { link } from "wesl";
+import appWesl from "./shaders/app.wesl?link";
+
+// Apply different conditions at runtime
+const linked = await link({ ...appWesl, conditions: { MOBILE: true, DEBUG: false } });
+const shaderModule = linked.createShaderModule(device, {});
+// linked.dest  →  final WGSL string
+```
+
+**When to use:** When conditions need to change at runtime (e.g., device capability detection, user settings).
+
+## Runtime Linking API (without bundler)
+
+```ts
+import { link } from "wesl";
+
+const linked = await link({
+  weslSrc: {
+    "main.wesl": `
+      import package::utils::helper;
+      @fragment fn fs_main() -> @location(0) vec4f {
+        return helper();
+      }
+    `,
+    "utils/helper.wesl": `
+      fn helper() -> vec4f { return vec4f(1.0); }
+    `,
+  },
+  rootModuleName: "main",           // default; or "package::foo", "./foo.wesl"
+  conditions: { DEBUG: true },
+  constants: { NumLights: 7 },      // accessed as constants::NumLights in shaders
+});
+
+linked.dest;                         // final WGSL string
+linked.createShaderModule(device, descriptor); // GPUShaderModule with WESL error mapping
+```
+
+## CDN / No-Bundler Usage
+
+```html
+<script type="importmap">
+  { "imports": { "wesl": "https://cdn.jsdelivr.net/npm/wesl/+esm" } }
+</script>
+<script type="module">
+  import { link } from "wesl";
+  const shaderSrc = await fetch("./shaders/main.wesl").then(r => r.text());
+  const linked = await link({ weslSrc: { "main.wesl": shaderSrc } });
+</script>
+```
+
+## External Shader Libraries
+
+WESL shader libraries installed via npm are autodetected from `node_modules` — no need to list them in `wesl.toml`.
+
+### lygia (math/graphics utilities)
+
+```bash
+npm install lygia
+```
+
+```wgsl
+import lygia::math::consts::PI;
+import lygia::color::space::rgb2heat::rgb2heat;
+import lygia::generative::snoise::snoise2;
+```
+
+### random_wgsl
+
+```bash
+npm install random_wgsl
+```
+
+```wgsl
+import random_wgsl::pcg_2u_3f;
+import random_wgsl::sinRand;
+```
+
+## CLI Tools
+
+```bash
+# Link shaders to WGSL on stdout
+npx wesl-link main
+npx wesl-link main --conditions DEBUG=true MOBILE=true
+npx wesl-link shader.wesl --rootModule package::custom --baseDir ./shaders
+
+# Package WESL library for npm distribution
+npx wesl-packager --rootDir src/shaders --outDir dist
+```
+
+## Publishing WESL Packages
+
+```bash
+npx wesl-packager --rootDir src/shaders --outDir dist
+```
+
+`package.json`:
+```json
+{
+  "name": "my_wgsl",
+  "exports": {
+    ".": { "import": "./dist/weslBundle.js", "types": "./dist/weslBundle.d.ts" }
+  },
+  "keywords": ["WGSL", "WESL", "WebGPU"]
+}
+```
+
+**Naming conventions:** prefer `_` over `-` in package names, prefer `_wgsl` suffix. The npm package name becomes the import prefix (with sanitization applied).
+
+## TypeScript Type Declarations
+
+`wesl-plugin` ships type declarations for `?static` and `?link` imports. Reference them via tsconfig:
+
+```json
+{ "compilerOptions": { "types": ["wesl-plugin/suffixes"] } }
+```
+
+Or with a triple-slash directive:
+
+```ts
+/// <reference types="wesl-plugin/suffixes" />
+```
+
+## Complete Minimal Example
+
+**File layout:**
+```
+shaders/
+  main.wesl
+  utils/color.wesl
+wesl.toml
+vite.config.ts
+src/
+  main.ts
+```
+
+**`wesl.toml`:**
+```toml
+edition = "2026_pre"
+```
+
+**`vite.config.ts`:**
+```ts
+import viteWesl from "wesl-plugin/vite";
+import { linkBuildExtension } from "wesl-plugin";
+export default { plugins: [viteWesl({ extensions: [linkBuildExtension] })] };
+```
+
+**`shaders/utils/color.wesl`:**
+```wgsl
+fn red() -> vec4f { return vec4f(1.0, 0.0, 0.0, 1.0); }
+```
+
+**`shaders/main.wesl`:**
+```wgsl
+import package::utils::color::red;
+
+@if(DEBUG)
+import package::utils::color;
+
+@fragment
+fn fs_main() -> @location(0) vec4f {
+  @if(DEBUG)
+  return color::red();
+  @if(!DEBUG)
+  return red();
+}
+```
+
+**`src/main.ts`:**
+```ts
+import { link } from "wesl";
+import appWesl from "../shaders/main.wesl?link";
+
+const adapter = await navigator.gpu.requestAdapter();
+const device = await adapter!.requestDevice();
+
+const linked = await link({ ...appWesl, conditions: { DEBUG: false } });
+const shaderModule = linked.createShaderModule(device, {});
+```
+
+## Gotchas
+
+- **`?static` vs `?link`:** `?static` bakes conditions at build time and produces a plain string — no runtime `wesl` dependency needed. Use `?link` only when conditions must vary at runtime.
+- **File name hyphens:** `sun-atmo.wesl` becomes `package::sun_atmo` (hyphen converted to underscore — hyphens and `@` are not valid WESL identifiers).
+- **Imports at top of file:** All `import` statements must appear before any declarations.
+- **`enable` directives not inherited:** If a module uses `enable f16;`, the root module must also declare `enable f16;`.
+- **`const_assert` scoping:** Module-scope `const_assert` statements are only included in output if something from that module is referenced.
+- **Dead code elimination:** Declarations not reachable from root entry points are stripped. Imports are lazy — importing a symbol does not include it; it must be referenced transitively from the root module.
+- **Name mangling:** The JS linker mangles only conflicting names; Rust linker mangles all non-root-module declarations (e.g., `package_utils_helper` instead of `helper`).
+- **`super::` vs `package::`:** `super::` climbs one level up the module hierarchy and can be stacked, but most code uses `package::` (absolute from root) instead.
+- **Transitive imports:** Dependencies of imported modules are included automatically. If A imports B and B uses C, you do not need to import C in A.
+- **wgsl-play web component:** Access `constants::` as `test::Uniforms` which provides `resolution: vec2f`, `time: f32`, `mouse: vec2f`.
+
+## Ecosystem
+
+A shared WESL module system enables common tooling across any WESL project:
+
+- **wgsl-play** — interactive WebGPU shader playground web component; embed live shaders in web pages or docs
+- **wgsl-edit** — shader editor web component with syntax highlighting and live error reporting
+- **wgsl-studio** — full IDE environment for WESL/WGSL development
+- **wgsl-test** — unit testing for compute and fragment shaders, integrates with Vitest
+- **wgsl-analyzer** — language server for WESL (forthcoming); enables IDE features like go-to-definition, hover docs, and diagnostics across the module graph
+- **lezer-wesl** — Lezer grammar for syntax highlighting in CodeMirror-based editors
+
+All of these tools understand WESL's module system. Using WESL means your shaders are immediately compatible with the entire ecosystem rather than locked to a project-specific import convention.
+
+## Resources
+
+- npm (`wesl`): https://www.npmjs.com/package/wesl
+- crates.io (`wesl`): https://crates.io/crates/wesl
+- GitHub (JS tooling): https://github.com/wgsl-tooling-wg/wesl-js
+- GitHub (Rust tooling): https://github.com/wgsl-tooling-wg/wesl-rs
+- WGSL spec (base language): https://www.w3.org/TR/WGSL/

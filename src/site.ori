@@ -2,6 +2,7 @@
 {
   // Static assets
   assets/
+  llms.txt
 
   // Slide decks (built Slidev presentations, served as-is)
   presentations/ = {
