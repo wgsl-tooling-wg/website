@@ -4,10 +4,5 @@
   // hyphens with spaces: "Foo-Bar.md" -> "Foo Bar"
   title: Origami.basename(fileName).replaceAll("-", " ")
 
-  // Add the page title to the body HTML as a heading
-  _body:
-    Tree.indent`
-      <h1>${ title }</h1>
-      ${ <processMarkdown.ori>(markdown) }
-    `
+  _body: processMarkdown.ori(markdown)
 }

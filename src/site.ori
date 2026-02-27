@@ -1,8 +1,19 @@
 // This file defines the overall structure of the WESL site
 {
-  // Static assets
-  assets/
+  // Static assets + compiled TypeScript
+  assets/ = {
+    ...assets/
+    ...Tree.mapExtension(ts, ".ts->.js", stripTs.js)
+  }
   llms.txt
+
+  // Web component bundles from node_modules
+  wgsl-edit.js = ../node_modules/wgsl-edit/dist/wgsl-edit.js
+  wgsl-play.js = ../node_modules/wgsl-play/dist/wgsl-play.js
+
+  // WESL Rust compiler (WASM) - lazy-loaded by "Show WGSL (Rust)" button
+  wesl_web.js = ../node_modules/wesl-rs-wasm/wesl_web.js
+  wesl_web_bg.wasm = ../node_modules/wesl-rs-wasm/wesl_web_bg.wasm
 
   // Slide decks (built Slidev presentations, served as-is)
   presentations/ = {

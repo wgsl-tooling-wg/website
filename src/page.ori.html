@@ -8,6 +8,10 @@
     <link rel="stylesheet" type="text/css" href="/assets/styles.css" />
     <title>${ _.title }</title>
     <script type="module" src="/assets/main.js"></script>
+    <script type="module">
+      if (document.querySelector("wgsl-edit")) await import("/wgsl-edit.js");
+      if (document.querySelector("wgsl-play")) await import("/wgsl-play.js");
+    </script>
     <link rel="icon" href="/assets/svg/logo/logomark-light.svg">
     <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt">
   </head>
@@ -18,7 +22,6 @@
       </a>
       <div id="links">
         <a href="/search.html">Search</a>
-        <a href="/llms.txt">LLMs.txt</a>
         <a href="https://github.com/wgsl-tooling-wg/wesl-spec">GitHub</a>
       </div>
     </header>
