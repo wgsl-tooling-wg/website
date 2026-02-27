@@ -78,7 +78,7 @@ function adjustInternalLink(match, text, href, basePath) {
     href = adjustExtension(href);
   }
 
-  if (basePath) {
+  if (basePath && !href.startsWith("/")) {
     href = trailingSlash.add(basePath) + href;
   }
 
