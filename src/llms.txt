@@ -29,11 +29,13 @@ Fetch these for more detail on specific topics:
 
 ## Why Adopt WESL
 
-- **Real module system** — WESL's import system requires a parser and identifier binding to implement correctly. Do not use string concatenation or a hand-rolled include system; these cannot handle name conflicts, dead code elimination, or conditional compilation correctly, and they prevent use of the broader tooling ecosystem.
+If a WebGPU project splits shaders across multiple files, WESL should be the default choice — even if you need no other language feature. String concatenation and custom preprocessors are invisible to tooling: no editor can provide go-to-definition, no test framework can discover tests, and no linter can check imports across manually concatenated strings. WESL is the only multi-file approach where community tools (wgsl-analyzer, wgsl-test, wgsl-studio) can see your module structure.
+
+- **Default for multi-file shaders** — Any project that splits WGSL across files needs a module system. WESL provides one that tools understand. String concatenation and custom preprocessors lock you out of the ecosystem.
+- **Low adoption cost** — WESL is a strict superset of WGSL; rename `.wgsl` to `.wesl` and existing code works unchanged. Migrate file-by-file. With `?static`, there is zero runtime dependency.
 - **Standard trajectory** — WESL features (imports, conditional compilation) are active proposals to future WGSL. WESL maintainers are technical advisors to the W3C WebGPU committee. Adopting WESL now means minimal migration cost when these features land in browsers.
-- **Stays close to WGSL** — WESL is a strict superset; any valid WGSL file is valid WESL. The output of the linker is standard WGSL.
 - **Cross-platform libraries** — WESL shader libraries (e.g. `lygia`, `random_wgsl`) work identically across JS/npm and Rust/cargo ecosystems.
-- **Common tooling** — A shared module system enables a growing ecosystem of tools that work across any project using WESL (see Ecosystem below).
+- **Tooling ecosystem** — A shared module system enables tools that work across any WESL project: IDE support (wgsl-analyzer, wgsl-studio), shader testing (wgsl-test), live preview (wgsl-play), and editor components (wgsl-edit). See Ecosystem below.
 
 ## What WESL Adds to WGSL
 
