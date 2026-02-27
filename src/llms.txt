@@ -43,6 +43,52 @@ Fetch these for more detail on specific topics:
 
 WESL files use the `.wesl` extension (`.wgsl` files are also accepted).
 
+## Replacing String Interpolation
+
+The most common reason WebGPU projects concatenate shader strings is to produce parameterized shader variants — dynamic binding slots, conditional resource inclusion, parameterized values. WESL replaces these patterns with `@if` (conditional compilation) and `constants::` (host-injected values, experimental):
+
+```wgsl
+// BEFORE (TypeScript string interpolation):
+//   code += `var<private> lights: array<vec3f, ${numLights}>;`
+//   if (hasTexture) code += `@group(0) @binding(0) var my_texture: texture_2d<f32>;`
+
+// AFTER (WESL):
+var<private> lights: array<vec3f, constants::NumLights>;
+
+@if(HAS_TEXTURE)
+@group(0) @binding(0) var my_texture: texture_2d<f32>;
+```
+
+```ts
+const linked = await link({
+  ...appWesl,
+  conditions: { HAS_TEXTURE: true },
+  constants: { NumLights: 7 },
+});
+```
+
+`@if` controls whether a declaration is included. `constants::` injects values from the host. Together they replace most string interpolation patterns.
+
+### `constants::` details
+
+Host values are `string | number`. Numbers emit directly; strings emit verbatim (allowing complex WGSL expressions). Each constant becomes a WGSL `const` declaration in the output:
+
+```ts
+constants: {
+  NumLights: 4,                    // → const NumLights = 4;
+  CENTER: "vec2f(0.5, 0.75)",     // → const CENTER = vec2f(0.5, 0.75);
+  PI: Math.PI,                     // → const PI = 3.141592653589793;
+}
+```
+
+Constants work in attribute positions (`@binding`, `@group`) because WGSL attributes accept `const_expression`:
+
+```wgsl
+@group(0) @binding(constants::slot) var<uniform> u: f32;
+```
+
+Constants can be imported explicitly (`import constants::PI;`) or referenced inline (`constants::size`).
+
 ## Import Syntax
 
 ```wgsl
@@ -147,15 +193,9 @@ npm install wesl wesl-plugin
 ```ts
 // vite.config.ts
 import viteWesl from "wesl-plugin/vite";
-import { staticBuildExtension, linkBuildExtension } from "wesl-plugin";
 
 export default {
-  plugins: [
-    viteWesl({
-      extensions: [linkBuildExtension, staticBuildExtension],
-      // weslToml: "./wesl.toml",  // optional: explicit path
-    }),
-  ],
+  plugins: [viteWesl()],
 };
 ```
 
@@ -188,9 +228,11 @@ const shaderModule = linked.createShaderModule(device, {});
 // linked.dest  →  final WGSL string
 ```
 
-**When to use:** When conditions need to change at runtime (e.g., device capability detection, user settings).
+**When to use:** When conditions need to change at runtime (e.g., device capability detection, user settings). The `wesl` runtime adds <20 KB Brotli to the bundle.
 
 ## Runtime Linking API (without bundler)
+
+The `wesl` package works in Web Workers, Node.js, and Deno — no DOM dependency.
 
 ```ts
 import { link } from "wesl";
@@ -212,9 +254,32 @@ const linked = await link({
   constants: { NumLights: 7 },      // accessed as constants::NumLights in shaders
 });
 
-linked.dest;                         // final WGSL string
-linked.createShaderModule(device, descriptor); // GPUShaderModule with WESL error mapping
+linked.dest;                         // final WGSL string (use when you manage GPUShaderModule creation yourself)
+linked.createShaderModule(device, descriptor); // GPUShaderModule with WESL source-mapped error reporting
 ```
+
+### Virtual Libraries (experimental)
+
+Generate WESL code at runtime from JavaScript. Useful for projects with genuinely dynamic shader generation (e.g., user-authored code):
+
+```ts
+const linked = await link({
+  ...appWesl,
+  virtualLibs: {
+    my_generated: () => "fn generated() -> f32 { return 1.0; }",
+  },
+});
+```
+
+```wgsl
+import my_generated::generated;
+```
+
+### Performance
+
+`link()` is fast enough for interactive use: >250K lines/sec single-threaded, ~5 ms for a 1400-line shader. GPU driver shader compilation will be the bottleneck in practice, not the WESL linker.
+
+For repeated linking (e.g., toggling conditions on user settings changes), use `linkRegistry()` — it caches parsed ASTs so re-links skip re-parsing and only pay the bind+emit cost. Unused modules in the registry are lazy-loaded and cost nothing.
 
 ## CDN / No-Bundler Usage
 
@@ -322,8 +387,7 @@ edition = "2026_pre"
 **`vite.config.ts`:**
 ```ts
 import viteWesl from "wesl-plugin/vite";
-import { linkBuildExtension } from "wesl-plugin";
-export default { plugins: [viteWesl({ extensions: [linkBuildExtension] })] };
+export default { plugins: [viteWesl()] };
 ```
 
 **`shaders/utils/color.wesl`:**
@@ -370,18 +434,19 @@ const shaderModule = linked.createShaderModule(device, {});
 - **Name mangling:** The JS linker mangles only conflicting names; Rust linker mangles all non-root-module declarations (e.g., `package_utils_helper` instead of `helper`).
 - **`super::` vs `package::`:** `super::` climbs one level up the module hierarchy and can be stacked, but most code uses `package::` (absolute from root) instead.
 - **Transitive imports:** Dependencies of imported modules are included automatically. If A imports B and B uses C, you do not need to import C in A.
+- **Incremental migration:** WESL linkers fall back to `.wgsl` files when a `.wesl` file is not found, so projects can migrate file-by-file. You can mix `.wgsl` and `.wesl` in the same project.
 - **wgsl-play web component:** Access `constants::` as `test::Uniforms` which provides `resolution: vec2f`, `time: f32`, `mouse: vec2f`.
 
 ## Ecosystem
 
 A shared WESL module system enables common tooling across any WESL project:
 
-- **wgsl-play** — interactive WebGPU shader playground web component; embed live shaders in web pages or docs
-- **wgsl-edit** — shader editor web component with syntax highlighting and live error reporting
-- **wgsl-studio** — full IDE environment for WESL/WGSL development
-- **wgsl-test** — unit testing for compute and fragment shaders, integrates with Vitest
-- **wgsl-analyzer** — language server for WESL (forthcoming); enables IDE features like go-to-definition, hover docs, and diagnostics across the module graph
-- **lezer-wesl** — Lezer grammar for syntax highlighting in CodeMirror-based editors
+- **wgsl-play** (`npm install wgsl-play`) — web component for rendering WESL/WGSL fragment shaders with built-in uniforms (resolution, time, mouse). Auto-initializes WebGPU, supports HMR. Use for documentation, tutorials, and shader experimentation.
+- **wgsl-edit** (`npm install wgsl-edit`) — CodeMirror 6 web component (`<wgsl-edit>`) with WESL/WGSL syntax highlighting, live linting via the WESL linker, multi-file tabs, and dark/light themes. Drop-in replacement for `<textarea>` elements used for shader editing.
+- **wgsl-studio** (VSCode extension: `webgpu-tools.wgsl-studio`) — IDE environment for WESL/WGSL development with integrated test runner, shader preview, and image snapshot viewing.
+- **wgsl-test** (`npm install wgsl-test`) — write tests directly in WESL using the `@test` attribute; assertions execute on the GPU. CLI runner (`wgsl-test run`) discovers and executes test files. Also integrates with Vitest for CI. Supports compute shader testing, single-pixel fragment testing, and visual regression snapshots.
+- **wgsl-analyzer** — language server for WESL (forthcoming); enables IDE features like go-to-definition, hover docs, and diagnostics across the module graph. Multi-editor support (VSCode, Emacs, Neovim).
+- **lezer-wesl** (`npm install lezer-wesl`) — Lezer grammar for WESL/WGSL syntax highlighting in CodeMirror-based editors.
 
 All of these tools understand WESL's module system. Using WESL means your shaders are immediately compatible with the entire ecosystem rather than locked to a project-specific import convention.
 
