@@ -1,0 +1,55 @@
+<div class="demo-container">
+<wgsl-edit id="home-editor" theme="auto" lint-from="home-player">
+  <script type="text/wesl" data-name="main.wesl">
+import package::color::palette;            // split shaders across files
+import lygia::draw::fill::fill;            // import from npm/cargo
+import package::shape::star;
+import lygia::generative::snoise::snoise2; // ignored if unused 
+
+@group(0) @binding(0) var<uniform> u: test::Uniforms;
+
+@fragment
+fn main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
+  let uv = pos.xy / u.resolution;
+  var sdf = star(pos.xy, u.resolution);
+  @if(noise)  // conditions at runtime or build time 
+  sdf += snoise2(uv * 8.0 + u.time) * 0.15;
+  let shape = fill(sdf, 0.6);
+  return vec4f(palette(uv, u.time) * shape, shape);
+}
+  </script>
+  <script type="text/wesl" data-name="shape.wesl">
+import lygia::sdf::starSDF::starSDF;
+
+fn star(pos_xy: vec2f, resolution: vec2f) -> f32 {
+  let uv = pos_xy / resolution;
+  let st = vec2f((uv.x - 0.2) * resolution.x / resolution.y + 0.3, uv.y);
+  return starSDF(st, 5, 0.1);
+}
+  </script>
+  <script type="text/wesl" data-name="color.wesl">
+fn palette(uv: vec2f, time: f32) -> vec3f {
+  let d = length(uv - 0.5);
+  let t = d * 3.0 + time * 0.15;
+  return vec3f(
+    0.2 + 0.2 * cos(t + 0.5),
+    0.15 + 0.2 * cos(t + 1.5),
+    0.35 + 0.25 * cos(t + 2.5),
+  );
+}
+  </script>
+</wgsl-edit>
+<div class="demo-player-row">
+  <wgsl-play id="home-player" source="home-editor" transparent></wgsl-play>
+  <div class="demo-controls">
+    <label class="demo-toggle">
+      <input type="checkbox" id="noise-toggle" checked> noise
+    </label>
+    <span class="demo-hint">Recompile with a runtime condition</span>
+    <button class="demo-toggle wgsl-btn" id="wgsl-btn">Show WGSL (JS)</button>
+    <span class="demo-hint">See the JS linker output</span>
+    <button class="demo-toggle wgsl-btn" id="rust-btn">Show WGSL (Rust)</button>
+    <span class="demo-hint">See the wesl-rs (WASM) output</span>
+  </div>
+</div>
+</div>
