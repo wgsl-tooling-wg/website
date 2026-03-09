@@ -49,10 +49,10 @@ function collectBundleModules(
 /** Build the files map for wesl-rs from the editor's sources and libs. */
 function buildFilesMap(
   editor: WeslEditor,
-  testUniformsSrc: string,
+  envSrc: string,
 ): Record<string, string> {
   const files: Record<string, string> = { ...editor.sources };
-  files["test"] = testUniformsSrc;
+  files["env"] = envSrc;
   for (const bundle of editor._libs || []) {
     collectBundleModules(bundle, files);
   }
@@ -81,16 +81,16 @@ export function isLoaded(): boolean {
  */
 export async function compile(
   editor: WeslEditor,
-  testUniformsSrc: string,
+  envSrc: string,
 ): Promise<string> {
   await loadWasm();
 
   // Ensure libs are fetched by triggering a JS link first
   try {
-    await editor.link({ virtualLibs: { test: () => testUniformsSrc } });
+    await editor.link({ virtualLibs: { env: () => envSrc } });
   } catch (_) { /* ignore link errors, we just need libs fetched */ }
 
-  const files = buildFilesMap(editor, testUniformsSrc);
+  const files = buildFilesMap(editor, envSrc);
 
   // Map editor conditions to wesl-rs features
   const features: Record<string, Feature> = {};

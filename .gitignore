@@ -2,4 +2,5 @@ build
 node_modules
 dist
 presentations/*/index.html
+src/assets/main.js
 .DS_Store

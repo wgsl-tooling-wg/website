@@ -1,8 +1,10 @@
+/// <reference types="wesl-plugin/suffixes" />
 //
 // This is client code loaded by main page template
 //
 
-import * as weslRs from "./wesl-rs-adapter.js";
+import * as weslRs from "./wesl-rs-adapter";
+import linkConfig from "./main.wesl?link";
 
 /**
  * Manage the side navigation and the navigation menu.
@@ -58,21 +60,40 @@ document.addEventListener("click", (event: MouseEvent) => {
   }
 });
 
-const testUniformsSrc = `
+const envSrc = `
   struct Uniforms {
     resolution: vec2f,
     time: f32,
     mouse: vec2f,
   }
+
+  @group(0) @binding(0) var<uniform> u: Uniforms;
 `;
+
+interface WeslProject {
+  weslSrc?: Record<string, string>;
+  rootModuleName?: string;
+  conditions?: Record<string, boolean>;
+}
 
 interface WgslEditElement extends HTMLElement {
   source: string;
   sources: Record<string, string>;
   _libs?: any[];
   conditions: Record<string, boolean>;
+  project: WeslProject;
   link(options: { virtualLibs: Record<string, () => string> }): Promise<string>;
 }
+
+interface WgslPlayElement extends HTMLElement {
+  project: WeslProject;
+  rebuildPipeline(): void;
+}
+
+const homeProject: WeslProject = {
+  ...linkConfig,
+  conditions: { noise: true },
+};
 
 function showWgslModal(titleText: string, wgslSource: string): void {
   const backdrop = document.createElement("div");
@@ -116,14 +137,23 @@ function showWgslModal(titleText: string, wgslSource: string): void {
  */
 document.addEventListener("DOMContentLoaded", () => {
   const editor = document.getElementById("home-editor") as WgslEditElement | null;
+  const player = document.getElementById("home-player") as WgslPlayElement | null;
   const toggle = document.getElementById("noise-toggle") as HTMLInputElement | null;
   const wgslBtn = document.getElementById("wgsl-btn") as HTMLButtonElement | null;
   const rustBtn = document.getElementById("rust-btn") as HTMLButtonElement | null;
   if (!editor || !toggle || !wgslBtn || !rustBtn) return;
 
-  // Noise condition toggle
-  const update = () => { editor.conditions = { noise: toggle.checked }; };
-  update();
+  // Initialize editor with project config (replaces inline <script type="text/wesl"> tags)
+  editor.project = homeProject;
+
+  // Noise condition toggle - update both editor and player
+  const update = () => {
+    const conditions = { noise: toggle.checked };
+    editor.conditions = conditions;
+    if (player) {
+      player.project = { conditions };
+    }
+  };
   toggle.addEventListener("change", update);
 
   // JS linker button
@@ -131,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let wgsl: string;
     try {
       wgsl = await editor.link({
-        virtualLibs: { test: () => testUniformsSrc },
+        virtualLibs: { env: () => envSrc },
       });
     } catch (e) {
       console.error("link failed", e);
@@ -147,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     rustBtn.textContent = weslRs.isLoaded() ? "Compiling..." : "Loading WASM...";
 
     try {
-      const wgsl = await weslRs.compile(editor, testUniformsSrc);
+      const wgsl = await weslRs.compile(editor, envSrc);
       showWgslModal("Transpiled to WGSL (Rust)", wgsl);
     } catch (e: unknown) {
       console.error("wesl-rs compile failed", e);
