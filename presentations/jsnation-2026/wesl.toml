@@ -1,0 +1,4 @@
+edition = "2026_pre"
+root = "."
+include = ["*.wesl"]
+dependencies = "auto"
