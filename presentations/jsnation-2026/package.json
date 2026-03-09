@@ -11,7 +11,7 @@
     "@slidev/theme-default": "^0.25.0",
     "lygia": "^1.4.1",
     "wesl-plugin": "^0.6.71",
-    "wgsl-edit": "^0.0.19",
-    "wgsl-play": "^0.0.33"
+    "wgsl-edit": "^0.0.22",
+    "wgsl-play": "^0.0.36"
   }
 }

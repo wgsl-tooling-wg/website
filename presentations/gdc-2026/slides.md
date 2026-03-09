@@ -26,8 +26,8 @@ Mathis Brossier (in spirit)
 <br/>
 </div>
 
-<div class="absolute right-12 top-30 flex flex-col items-center">
-<img src="/gdc-2026-qrcode.png" class="w-40" />
+<div class="absolute right-12 top-20 flex flex-col items-center">
+<img src="/gdc-2026-qrcode.png" class="w-60" />
 <a href="https://wesl-lang.dev/gdc-2026" class="text-sm mt-2 text-gray-500">wesl-lang.dev/gdc-2026</a>
 </div>
 
@@ -37,10 +37,12 @@ GDC Khronos 2026
 </div>
 
 <!--
-**tools** and **extension** for WebGPU 
-
 Copy down the QR code, these slides include demos you can play with 
 right now if you want.
+
+**tools** and **extension** for WebGPU 
+
+Open source **WebGPU Tools Group**
 -->
 
 ---
@@ -67,23 +69,24 @@ onMounted(() => {
   const editor = document.getElementById("star-editor") as any;
   document.getElementById("star-noise")?.addEventListener("change", (e) => {
     const noise = (e.target as HTMLInputElement).checked;
-    if (editor) { editor._conditions = { noise }; editor.updateLint(); }
-    if (player) { player._linkOptions = { conditions: { noise } }; player.rebuildPipeline(); }
+    if (editor) { editor.conditions = { noise }; }
+    if (player) { player.conditions = { noise }; }
   });
 });
 </script>
 
 <!--
-Here's the kind of thing you can do.
-
 Put live WebGPU samples in slides!
-And on any web app
+(And on any web page)
+
+**GPU magic** is very accessible
+- just the code you see here.
+
+use some modest **extensions** to the shader language
+
+and some **web components**.
 
 You can edit the code in this slide
-
-We'll discuss later how it works.
-- it's really easy
-- access GPU power in just a few lines of code
 -->
 
 ---
@@ -152,69 +155,44 @@ fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
 ````
 
 <!--
-A peek at some of the extensions in WESL:
-
-starts with WGSL
-
 adds **modules** so people can split their shaders into separate files
 
 adds **packaged library** support so people share the modules across organizations
 
-adds **conditionals** so people can customize shaders at build or runtime
+adds **conditions** so people can **specialize** shaders at build or runtime
 
-WESL extensions are implemented with **lightweight transpiler** 
-
-starts from WGSL and adds **extensions feel natural**
+**extensions feel natural**
 -->
 
 ---
 
-# Why Extend WebGPU?
+# Extending WebGPU
+
+<div class="mt-8 mb-8">
 
 ### WESL extensions are potential future WebGPU features
 
-WebGPU Conformance Test Suite (CTS)
-
-### Polyfill first, W3C standard later
-
-Browser changes are forever
-
-<br/>
-
-### Some features might not belong in browsers
-
-<div class="mt-2 ml-6">
-Load shader modules incrementally from external sources via import maps?
+<div class="mt-4 ml-6">
+Polyfill first, browser changes are forever.
+</div>
 </div>
 
-<div class="mt-2 ml-6">
-Hooks for test frameworks like <code>@test</code>?
+### Enable users with WebGPU + tooling
+
+<div class="mt-4 ml-6 ">
+Load shader modules incrementally from external sources
 </div>
 
-<div class="mt-2 ml-6">
-Shader library packaging formats?
+<div class="mt-4 ml-6">
+Hooks for test frameworks like <code>@test</code>
+</div>
+
+<div class="mt-4 ml-6">
+Shader library packaging formats
 </div>
 
 <!--
-Most WESL language extensions should feel natural
-
-They're designed as **proposals** for **future browser** implementation.
-
-All our tools support both vanilla WGSL plus extensions
-and we test against the browser conformance test suite.
-
-**Support** for WebGPU/WGSL.
-
-We want to help grow the ecosystem, not create a **splinter language**.
-
-<br>
-
-
-Toward that end, we maintain and test for strict upward compatibility with WGSL. Our tools run the same **compatibility test suite** as the browsers.
-
-It makes sense to develop some language features **outside the browser core**.
-- it's **easier to iterate**: open source tools vs. multiple browsers
-- some features may belong in tools indefinitely.
+We expect some extensions to turn into **proposals** for **future browser** implementation.
 -->
 
 ---
@@ -235,131 +213,95 @@ flowchart LR
   classDef transform fill:#dbe9f2,stroke:#333;
   classDef data fill:#e3d5e3, stroke:#333;
 ```
-<div class="mt-2 space-y-6">
+<div class="mt-6">
 
-### Language ergonomics (modules, generics)
+## Transpilation: like TypeScript to JavaScript
 
-### Shader/host code integration (reflection, injection)
 
-### Analogy: as TypeScript is to JavaScript
+<div class="mt-4 ml-6 space-y-4">
+
+
+### Add language ergonomics (modules, generics)
+
+### Add shader/host code integration (reflection, injection)
+
+### But strictly WebGPU compatible
+Conformance Test Suite (CTS)
+</div>
 
 </div>
 
-<!--
-Of course, there are limits to what we can do with WESL.
-
-We are a shader front end.
-
-We can rewrite shader source code,
-
-but the underlying vulkan APIs are inaccessible to us.
-
-So we can try generics in WESL, but not bindless.
--->
-
----
-
-# WESL Tomorrow
-
-### Module System Enhancements
-<div class="mt-4 ml-6">
-Wildcards
-
-Visibility control
-</div>
-
-### Host / Shader Interface
-<div class="mt-4 ml-6">
-Parameterized modules
-
-Reflection
-
-</div>
-
-### Generics / Typeclasses
-<br/>
 
 <!--
-There are **more language features** under way.
+Extensions work via lightweight transpilation
 
-Medium term, **Reflection and Generics** should enable a richer class of apps and libraries
--->
+We can add language ergonomics and integration features.
 
----
-layout: center
----
+But the extensions are purely additive, intended **support** and only enhance WebGPU/WGSL.
 
-# Tools
+Our tools are tested against both the browser conformance
+test suite and the extensions test suite.  
 
-<!--
-Now let's start talking the tools that are a main driver of shader language extensions
 -->
 
 ---
 
 
 # WebGPU Tooling
-For WESL and WGSL
+For WGSL and WESL
 
 <div class="grid grid-cols-2 gap-4 mt-4">
 
-<div class="border rounded-lg p-4 bg-blue-50">
+<div class="border rounded-lg p-4 bg-green-50">
 
 ### Linking / Packaging
 <div class="ml-4 mt-2">
 
 wesl-plugin - vite/rollup/webpack
 
-build.rs - rust integration
+build.rs - rust integration in wesl crate
 
-wesl-cli - link or package from cli
+wesl-packager - create npm packages
 </div>
 </div>
 
-<div class="border rounded-lg p-4 bg-blue-50">
+<div class="border rounded-lg p-4 bg-pink-50">
 
-### Editor Support
+### Test 
+<div class="leading-8">
+
+wgsl-test - headless unit and image tests
+
+wgsl-studio - VS Code tests / previews
+
+</div>
+</div>
+
+<div class="border rounded-lg p-4 bg-yellow-50">
+
+### Web Components 
 <div class="ml-4 mt-2">
 
-wgsl-analyzer - IDE Language Server
-
-wgsl-edit - web editor
-
-</div>
-
-</div>
-
-<div class="border rounded-lg p-4 bg-blue-50">
-
-### Documentation Tools
-<div class="ml-4 leading-8 mt-2">
-
-wesl-doc - HTML documentation generator
+wgsl-edit - live shader editing
 
 wgsl-play - web samples
 
 </div>
 </div>
 
-
 <div class="border rounded-lg p-4 bg-blue-50">
 
-### Test Tools
-<div class="leading-8">
+### WGSL-analyzer 
+<div class="ml-4 mt-2">
 
-wgsl-test - native and vite/jest tests
+IDE language server
 
-wgsl-studio - IDE test runner
+Code Formatter
 
+</div>
 </div>
 
 </div>
-
-</div>
-
-<!--
-An overview of the tools we're going to talk about.
--->
 
 ---
 layout: center
@@ -371,27 +313,34 @@ layout: center
 
 # Linking Shader Modules
 
-<div class="grid grid-cols-2 gap-4 mt-8">
+<div class="grid gap-4 mt-8" style="grid-template-columns: auto 1fr">
 
 <div>
 
 
 ### TypeScript
 ```ts
-import { link } from "wesl";
-import appWesl from "./shaders/app.wesl?link";
-
-const linked = await link(appWesl);
-
-linked.createShaderModule(device);
-
+import wgslStr from "./shaders/app.wesl?static";
 ```
+
+<v-click>
+<br>
+or at link at runtime:
+
+```ts
+import proj from "./shaders/app.wesl?link";
+
+const linked = await link(proj, {MOBILE:true});
+linked.createShaderModule(device);
+```
+</v-click>
 
 **vite** / **webpack** / **rollup** plugins
 
 
 </div>
 
+<v-click>
 <div>
 
 
@@ -400,6 +349,7 @@ linked.createShaderModule(device);
 use wesl::Wesl;
 
 let wgsl_str = Wesl::new("shaders")
+    .set_feature("MOBILE", true)
     .compile("app.wesl")
     .unwrap()
     .to_string();
@@ -408,40 +358,25 @@ let wgsl_str = Wesl::new("shaders")
 **build.rs** integration
 
 </div>
+</v-click>
 
 </div>
 
-<div class="space-y-6 mt-12">
+<div class="absolute bottom-0">
 
-### Transpile & link at build or runtime
-
-### CLI linkers also available
-
+[wesl-plugin](https://github.com/wgsl-tooling-wg/wesl-js/tree/main/tools/packages/wesl-plugin)
 </div>
 
 <!--
-Plugging in the transpiler
+**in your app**, enable modules and other extensions
 
-very few lines of code to add WESL to a WebGPU project
+by adding a plugin to the bundler (like **vite** or **webpack**)
 
-Meet developers where they are.
+**?static** to transpile at build time
 
-Plugin the tools/workflow they already use.
+**?link** to transpile at runtime
 
-made plugins for your favorite bundlers.
-
-If you're a typescript developer using a bundler the left side should look vaguely familiar
-
-If you're a rust developer, plugging into build.rs should be familiar.
-
-cli tools are also available for linking too, for users with more custom build setups
-
-And a playground for people who want to view the WESL to WGSL transpilation.
-
-Basically if you want to be able to link modules of WGSL shaders together
-we have an answer for you now.
-
-.. Not just app shaders
+or in rust
 -->
 
 ---
@@ -484,19 +419,13 @@ style libraries fill:#b5cbd2,stroke:#999
 
 </div>
 
-###
 
-### Tools are Library Aware
 </div>
 
 <!--
-the logical next step is **enabling libraries**
+**Packaging** a shader library for **publishing** is easy too
 
-The WebGPU community right now is full of copy-paste
-
-It's easy:
-- one cli command for npm
-- one line of code for rust
+run a command and then publish as normal on **npm** or **cargo**
 -->
 
 ---
@@ -516,11 +445,9 @@ Shader libraries as npm packages
 </div>
 
 <!--
-use for example Lygia a large collection of shader functions from the Book of Shaders
+users can use the library like any other npm package.
 
-just:  npm add lygia
-
-just like you would any other package
+for example Lygia a large collection of shader functions from the Book of Shaders
 -->
 
 ---
@@ -541,88 +468,12 @@ same sources, published two ways.
 </div>
 
 <!--
-and cargo will just about the same way
+cargo will work the same
 
-in a few days :-)
+note that same shares are published twice 
 
-its the exact same set of shader functions,
-
-published twice so that they're natively accessible to rust and ts/js communities
-
-it's possible because we're sharing same standard set of extensions
+make it easy by connecting to existing dev and packaging tooling
 -->
-
----
-
-# Designing a Library Format for WebGPU
-
-<div class="mt-8 space-y-6">
-
-### Text format for stability
-<div class="ml-8">
-Human-readable, diffable, versionable
-
-Optimize size/speed when the library is used
-</div>
-
-### npm/cargo mappings
-Don't reinvent package management
-
-### Simple encoding = stable encoding
-Minimize complexity for long-term compatibility
-
-</div>
-
-<!--
-Zoom in on the issue of Enabling Libraries for WebGPU
-
-**Text format for stability**
-
-**slot it into existing ecosystems**
--->
-
----
-
-# JS Library Embedding
-
-```ts
-/// dist/weslBundle.js
-export const weslBundle = {
-  name: "lygia",          // basic metadata
-  edition: "2026_pre",
-  modules: {
-    "math/permute.wesl":  // relative paths to support shader linking
-
-        // shader source text
-    ` import lygia::math::mod289;
-      fn permute(x: f32) -> f32 {
-        return mod289(((x * 34.0) + 1.0) * x);
-      }`
-  },
-  dependencies: [],       // js handles dependencies & versions
-};
-```
-
-Shaders are packaged as JavaScript strings.
-
-The library publisher builds the bundle.
-
-Tools read packages automatically (vite, webpack, cli, test).
-
-<!--
-The npm library bundle format is automatically generated.
-
-It looks like roughly like this on the inside:
-
-mostly, just the shader text:
-
-plus a minimal set of metadata
-
-like the relative path, for module linking
-
-and dependencies to other bundles for inter-library references
--->
-
 
 ---
 layout: center
@@ -655,7 +506,7 @@ classDef data fill:#e3d5e3, stroke:#333;
 Test shader functions with assertions in WGSL or TypeScript
 
 ### Image Snapshot Testing
-Visual regression testing with diff reports
+Headless visual regression testing with diff reports
 
 ### wgsl-studio
 VS Code extension for running tests, previewing images
@@ -668,17 +519,6 @@ testing is obviously important for developers
 also seems likely to be especially important in the **AI era**
 
 tests help keep our **agents on track**
-
-Goal: integrate with **developer workflows**,
-- **continuous integration** friendly testing
-- integrate w/ **existing test frameworks** where appropriate
-- **VSCode**
-
-We now have some fresh new ways to do:
-- Unit testing
-- image snapshot testing
-
-on WebGPU
 -->
 
 ---
@@ -697,13 +537,14 @@ fn smootherstepQuarter() {
 }
 ```
 
-Test shader functions with shader functions
+<div class="mt-8 space-y-4">
 
-Validate with shader functions
+### Shader functions drive tests
 
-Run tests with wgsl-test cli runner
+### Run in Node (Dawn) or Deno (wgpu)
 
-Tests run in Node (Dawn) or Deno (wgpu)
+### Vitest integration available
+</div>
 
 
 <div class="absolute bottom-0">
@@ -712,51 +553,9 @@ Tests run in Node (Dawn) or Deno (wgpu)
 </div>
 
 <!--
-wgsl-test: **headless** unit and visual regression tests from the **cli**
+wgsl-test: **headless** unit and visual regression tests
 
-Users write unit tests in shader code
-- that's how shader functions are meant to be called
-
-Users can also put **validation** [expect functions] in shader code
-(Next slide shows an alternate approach)
-
-Where feasible, it's nice to **declare**
-everything in shader code:
-
-setup, test & validation
--->
-
----
-
-# `wgsl-test`: Vitest Integration Available
-or jest or mocha
-
-```ts
-import { testCompute } from "wgsl-test";
-
-const src = `
-  import package::hash::lowbias32;
-
-  @compute @workgroup_size(1)
-  fn main() {
-    env::results[0] = lowbias32(0u);
-    env::results[1] = lowbias32(42u);
-  }
-`;
-
-const result = await testCompute({ device, src });
-```
-
-Return a result and validate in any test library
-
-Handy for complicated validation / setup
-
-<!--
-here's a simple example of running a unit test
-but this time **returning** the result back to
-to run validation in TypeScript.
-
-you can imagine for complicated **statistical** tests, you might prefer to write the validation in host code.
+write unit **tests in shader code**
 -->
 
 ---
@@ -782,20 +581,9 @@ It produces a nice little html report on failures.
 <img src="/wgsl_studio_unit_test.png" alt="vscode wgsl-studio unit tests" class="h-100" />
 
 <!--
-For **vscode** we've a new vscode extension available called **wgsl-studio**.
+For **VS Code** we've a new extension called **wgsl-studio**.
 
-It uses the wgsl-test core (and the Dawn webgpu engine) to support a test runner in VsCode.
-
-On the left you can see that the **'test explorer'** shows both vitest tests and native tests.
-
-On the right you can see errors reported along with the failing function.
-
-As an **aside** on design here..
-The **astute observer** might notice that the error is reported at the function, not the 'expect' call that's failing.
-
-This is an example of how tool needs can drive the design for language extensions.
-- users want a tool to run tests in their dev environment
-- to build a better tool, we need some language affordance to report the current source line.
+Shows **test catalog**, **live test results**
 -->
 
 ---
@@ -805,9 +593,7 @@ This is an example of how tool needs can drive the design for language extension
 <img src="/wgsl_studio_preview.png" alt="vscode wgsl-studio preview shaders" class="h-100" />
 
 <!--
-**previews from shaders**
-
-like the ones that that generate **image snapshots** are also viewable in wgsl-studio.
+and also **previews from shaders**
 
 These are live rendered and update as you change the code.
 -->
@@ -816,81 +602,43 @@ These are live rendered and update as you change the code.
 layout: center
 ---
 
-# Web Site Tools
-
-<!--
-next set of tools
-
-adding WebGPU to web sites.
--->
+# Web Components
 
 ---
 
-# wgsl-play / wgsl-edit
-
-<div class="mt-8 space-y-6">
-
-### Interactive Code Samples
-Editable shader examples embedded in documentation
-
-### Live Preview
-See shader output in real-time as you edit
-
-</div>
-
 <!--
-Some web components for using WESL/WGSL on web pages
--->
+web components to mix into your web sites
 
----
+saw an example the first slide or two
+-->
 
 # `<wgsl-play>`: Web Viewer
 
 <div class="grid grid-cols-2 gap-4 mt-4">
 
-<div class="space-y-4">
+<div class="space-y-4 mt-4">
 
+### Shader inline in HTML
 ```html
 /// index.html
 <wgsl-play id="player"></wgsl-play>
 ```
 
-<div class="mt-4">
-
-### Shader inline in HTML
-
-</div>
-
 <v-click>
+<div style="margin-top: 4rem;">
 
-<div style="margin-top: 2rem;">
-
-```ts
-/// app.ts
-import shader from "./draw_shapes.wesl?link"
-
-document.querySelector("#player").project = shader
-```
-
-</div>
-
-<div>
-
-```rs
-/// draw_shapes.wesl
-import lygia::space::rotate;
-import lygia::sdf::gearSDF;
-...
-```
-
-</div>
-
-<div class="mt-4 space-y-2">
+or
 
 ### Shaders in separate files
 
-</div>
+```ts
+/// app.ts
+import proj from "./draw_shapes.wesl?link";
 
+document.querySelector("#player").project = proj;
+```
+
+</div>
 </v-click>
 
 </div>
@@ -910,35 +658,13 @@ onMounted(() => initPlayer("demo-player", drawShapesProject))
 </script>
 
 <!--
-**wgsl-play** is a convenient way to put simple shaders on a web page
-
-note that this is the same code as the image snapshot tests
-
-so regression **tests can do double duty as demos**.
-
-[press play]
-
-this is the component used **inside the vscode extension** too.
-
-**couple of lines in html** to get a player
+**wgsl-play** low boilerplate way to put a shader on a web page
 
 you can put the shader code **inline** in the html
 
-[press pause]
+using the **bundler** plugin and **?link** 
 
-or keep it in a separate file.
-
-In this example we're using the **wesl-plugin's ?link** from link
-
-one line of code to automatically assemble a dozen shader modules.
-
-Also, interested
-in pursuing this **correspondence** between **image tests** and **demos**.
-
-**Declarative annotations** to add to make a shader runnable seem like
-they work for tests and demos..
-
-Interested in learning from you about ways to make declarative tests and demos.
+handy when there's **15 files** as in this example 
 -->
 
 ---
@@ -983,16 +709,12 @@ onMounted(() => initEditor("demo-editor", mandelbrotProject))
 </script>
 
 <!--
-another web component called **wgsl-edit**
-for people who want to put a WebGPU **shader editor** on their sites
+**wgsl-edit** is a similar component for people who want to put 
+a WebGPU **shader editor** on their sites
 
-uses **codemirror** under the hood, can to **embed on mobile**
+It uses **codemirror** under the hood, can to **embed on mobile**
 
-**tabbed interface**
-
-[click tabs, dbl click to rename, + to add new]
-
-and it **interoperates** with wgsl-play
+and of course it **interoperates** with wgsl-play
 -->
 
 ---
@@ -1016,28 +738,43 @@ onMounted(() => {
 <!--
 editor and player linked: edit code, see live output
 
-[press play]
+-->
 
-see errors from Dawn
+---
 
-[edit vec4f to vec3f]
+# Errors & Live Loading
 
-see errors from the WESL transpiler
+<div style="display: flex; gap: 1rem; height: 420px; margin-top: 1rem;">
+  <wgsl-edit id="error-editor" style="flex: 1; min-width: 0; overflow: hidden; display: block;" theme="light"></wgsl-edit>
+  <wgsl-play id="error-player" style="width: 400px; aspect-ratio: 1; flex-shrink: 0; align-self: start; display: block;" autoplay="false"></wgsl-play>
+</div>
 
-[rm comma after purple]
+<script setup>
+import { onMounted } from "vue"
+import { initEditor, mandelbrotErrorProject, mandelbrotErrorSrcBroken, connectPlayerToEditor } from "./wgsl-demos"
+onMounted(() => {
+  initEditor("error-editor", mandelbrotErrorProject, mandelbrotErrorSrcBroken);
+  connectPlayerToEditor("error-player", "error-editor");
+});
+</script>
 
-It's all web based.. so we can do things like
-load new packages straight from npm on demand.
+<!--
+This version starts with syntax error. 
 
-I'm going add a little noise to the image from another npm library
+You can see the error reported both in the player and in the editor.
 
- + .5 * random_wgsl::pcg_2u_3f(vec2u(pos.xy))
+... in the process of adding a little noise to the image. 
+
+Using a library that's not built in to the app
+
+It's all web based.. so we can let users add arbitrary npm packages
+on demand..
 
 watch the lower left
 
 [add semicolon]
 
-That's the notification as the web page loads from npm.
+That's the notification as the library is live loaded from npm.
 -->
 
 ---
@@ -1053,7 +790,7 @@ That's the notification as the web page loads from npm.
 <!--
 you can use **wgsl-edit** to provide user editable shaders in your web applications.
 
-like here with the forthcoming **hypatia** app, allowing advanced users to hack their own weather layers with a snippet of shader code.
+forthcoming **hypatia** app, allowing advanced users to hack their own weather layers with a snippet of shader code.
 -->
 
 ---
@@ -1164,40 +901,48 @@ layout: center
 ---
 
 # Tools for WebGPU
-<div class="mt-8 space-y-6">
+
+<div class="mt-8 ">
 
 ### Shaders are easy
-<div class="ml-8">
-Plugins and components make for simple setup
+<div class="ml-8 mt-4">
+Tooling makes it easier
 
 Testing is recommended
 </div>
+</div>
+
+<div class="mt-8 ">
 
 ### Avoid building shaders from strings
 
-<div class="ml-8">
+<div class="ml-8 mt-4">
 Common extensions enable standard tools
 </div>
+</div>
 
 
-### Tell us what you want
+<div class="mt-8 ">
 
-<div class="ml-8">
+### Tell us about WebGPU challenges
+
+<div class="ml-8 mt-4">
 Maybe we can help with tools or extensions
 </div>
-
 </div>
 
+
 <!--
-I hope
-- easy to write basic shaders and tap the GPU power
-- straightforward to test
+**GPU magic** on any **web page**
 
-If you're tempted to extend 
+**tools** make it even easier to **build and maintain**
 
-Tools are new, please give us feedback. 
+Tools are new, 
+**star the repo, spread the word.**
 
-star the repo, spread the word.
+We'd love your **feedback**, or your **help**! 
+
+It's all open source.
 -->
 
 ---
@@ -1209,19 +954,21 @@ layout: center
 <div class="mt-12">
 
 [wesl-lang.dev](https://wesl-lang.dev)
-
+&nbsp; &nbsp; &nbsp; 
 [WESL discord](http://discord.gg/Ty7MjWVfvh)
 
-<div class="flex gap-8 mt-16">
+<div class="flex gap-8 mt-24 mb-8">
 <a href="https://crates.io/crates/wesl">wesl-rs</a>
 <a href="https://www.npmjs.com/package/wesl-js">wesl-js</a>
 <a href="https://www.npmjs.com/package/wgsl-test">wgsl-test</a>
 <a href="https://www.npmjs.com/package/wgsl-play">wgsl-play</a>
 <a href="https://www.npmjs.com/package/wgsl-edit">wgsl-edit</a>
+<a href="https://github.com/wgsl-tooling-wg/wesl-js/tree/main/tools/packages/wesl-plugin">wesl-plugin</a>
 <a href="https://marketplace.visualstudio.com/items?itemName=webgpu-tools.wgsl-studio">wgsl-studio</a>
-<a href="https://www.npmjs.com/package/lygia">lygia</a>
-<a href="https://zero.hypatia.earth">hypatia</a>
 </div>
+
+[lygia](https://www.npmjs.com/package/lygia)
+&nbsp; &nbsp; [hypatia](https://zero.hypatia.earth)
 
 
 </div>
@@ -1233,3 +980,126 @@ layout: center
 ---
 
 # Extras
+
+---
+
+# WESL Tomorrow
+
+### Module System Enhancements
+<div class="mt-4 ml-6">
+Wildcards
+
+Visibility control
+</div>
+
+### Host / Shader Interface
+<div class="mt-4 ml-6">
+Parameterized modules
+
+Reflection
+
+</div>
+
+### Generics / Typeclasses
+<br/>
+
+<!--
+Now that we have the basics down, there are **more language features** under way.
+-->
+
+---
+
+# `wgsl-test`: Vitest Integration Available
+or jest or mocha
+
+```ts
+import { testCompute } from "wgsl-test";
+
+const src = `
+  import package::hash::lowbias32;
+
+  @compute @workgroup_size(1)
+  fn main() {
+    env::results[0] = lowbias32(0u);
+    env::results[1] = lowbias32(42u);
+  }
+`;
+
+const result = await testCompute({ device, src });
+```
+
+Return a result and validate in any test library
+
+Handy for complicated validation / setup
+
+<!--
+or **return** the results back to the host code, 
+TypeScript in this case.
+
+Useful for example if you want to validate results
+with your **statistics** library.
+-->
+
+---
+
+# Shaders in NPM 
+
+```ts
+/// dist/weslBundle.js
+export const weslBundle = {
+  name: "lygia",          // basic metadata
+  edition: "2026_pre",
+  modules: {
+    "math/permute.wesl":  // relative paths to support shader linking
+
+        // shader source text
+    ` import lygia::math::mod289;
+      fn permute(x: f32) -> f32 {
+        return mod289(((x * 34.0) + 1.0) * x);
+      }`
+  },
+  dependencies: [],       // js handles dependencies & versions
+};
+```
+
+<div class="mt-8 space-y-6">
+
+### Use npm for package management (and cargo)
+
+### Simple text format for stability
+
+</div>
+
+
+<!--
+Simple format
+
+Don't reinvent package management, integrate with existing dev tooling.
+-->
+
+---
+
+# Designing a Library Format for WebGPU
+
+<div class="mt-8 space-y-6">
+
+### Text format for stability
+<div class="ml-8">
+Human-readable, diffable, versionable
+
+Optimize size/speed when the library is used
+</div>
+
+### npm/cargo mappings
+Don't reinvent package management
+
+### Simple encoding = stable encoding
+Minimize complexity for long-term compatibility
+
+</div>
+
+<!--
+**Text format for stability**
+
+**slot it into existing ecosystems**
+-->

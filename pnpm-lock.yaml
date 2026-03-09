@@ -11,11 +11,11 @@ importers:
   .:
     dependencies:
       '@weborigami/async-tree':
-        specifier: 0.6.12
-        version: 0.6.12
+        specifier: 0.6.13
+        version: 0.6.13
       '@weborigami/origami':
-        specifier: 0.6.12
-        version: 0.6.12
+        specifier: 0.6.13
+        version: 0.6.13
       '@weborigami/pagefind':
         specifier: 0.0.16
         version: 0.0.16
@@ -47,15 +47,15 @@ importers:
         specifier: https://github.com/mighdoll/big-files/raw/main/wesl-rs-wasm-0.3.2.tgz
         version: https://github.com/mighdoll/big-files/raw/main/wesl-rs-wasm-0.3.2.tgz
       wgsl-edit:
-        specifier: ^0.0.19
-        version: 0.0.19
+        specifier: ^0.0.22
+        version: 0.0.22
       wgsl-play:
-        specifier: ^0.0.33
-        version: 0.0.33
+        specifier: ^0.0.36
+        version: 0.0.36
     devDependencies:
       '@typescript/native-preview':
-        specifier: 7.0.0-dev.20260308.1
-        version: 7.0.0-dev.20260308.1
+        specifier: 7.0.0-dev.20260310.1
+        version: 7.0.0-dev.20260310.1
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -66,8 +66,8 @@ importers:
         specifier: ^7.3.1
         version: 7.3.1(@types/node@22.19.11)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)
       wrangler:
-        specifier: ^4.71.0
-        version: 4.71.0
+        specifier: ^4.72.0
+        version: 4.72.0
 
   presentations/gdc-2026:
     dependencies:
@@ -84,11 +84,11 @@ importers:
         specifier: ^0.6.71
         version: 0.6.71(@nuxt/kit@3.21.1)(esbuild@0.27.3)(vite@7.3.1(@types/node@22.19.11)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
       wgsl-edit:
-        specifier: ^0.0.19
-        version: 0.0.19
+        specifier: ^0.0.22
+        version: 0.0.22
       wgsl-play:
-        specifier: ^0.0.33
-        version: 0.0.33
+        specifier: ^0.0.36
+        version: 0.0.36
 
   presentations/jsnation-2026:
     dependencies:
@@ -105,11 +105,11 @@ importers:
         specifier: ^0.6.71
         version: 0.6.71(@nuxt/kit@3.21.1)(esbuild@0.27.3)(vite@7.3.1(@types/node@22.19.11)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
       wgsl-edit:
-        specifier: ^0.0.19
-        version: 0.0.19
+        specifier: ^0.0.22
+        version: 0.0.22
       wgsl-play:
-        specifier: ^0.0.33
-        version: 0.0.33
+        specifier: ^0.0.36
+        version: 0.0.36
 
   presentations/symposium-2026-02-13:
     dependencies:
@@ -124,7 +124,7 @@ importers:
         version: 1.4.1
       wesl-plugin:
         specifier: ^0.6.65
-        version: 0.6.70(@nuxt/kit@3.21.1)(esbuild@0.27.3)(vite@7.3.1(@types/node@22.19.11)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
+        version: 0.6.71(@nuxt/kit@3.21.1)(esbuild@0.27.3)(vite@7.3.1(@types/node@22.19.11)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
       wgsl-edit:
         specifier: ^0.0.7
         version: 0.0.7
@@ -393,32 +393,32 @@ packages:
       workerd:
         optional: true
 
-  '@cloudflare/workerd-darwin-64@1.20260301.1':
-    resolution: {integrity: sha512-+kJvwociLrvy1JV9BAvoSVsMEIYD982CpFmo/yMEvBwxDIjltYsLTE8DLi0mCkGsQ8Ygidv2fD9wavzXeiY7OQ==}
+  '@cloudflare/workerd-darwin-64@1.20260310.1':
+    resolution: {integrity: sha512-hF2VpoWaMb1fiGCQJqCY6M8I+2QQqjkyY4LiDYdTL5D/w6C1l5v1zhc0/jrjdD1DXfpJtpcSMSmEPjHse4p9Ig==}
     engines: {node: '>=16'}
     cpu: [x64]
     os: [darwin]
 
-  '@cloudflare/workerd-darwin-arm64@1.20260301.1':
-    resolution: {integrity: sha512-PPIetY3e67YBr9O4UhILK8nbm5TqUDl14qx4rwFNrRSBOvlzuczzbd4BqgpAtbGVFxKp1PWpjAnBvGU/OI/tLQ==}
+  '@cloudflare/workerd-darwin-arm64@1.20260310.1':
+    resolution: {integrity: sha512-h/Vl3XrYYPI6yFDE27XO1QPq/1G1lKIM8tzZGIWYpntK3IN5XtH3Ee/sLaegpJ49aIJoqhF2mVAZ6Yw+Vk2gJw==}
     engines: {node: '>=16'}
     cpu: [arm64]
     os: [darwin]
 
-  '@cloudflare/workerd-linux-64@1.20260301.1':
-    resolution: {integrity: sha512-Gu5vaVTZuYl3cHa+u5CDzSVDBvSkfNyuAHi6Mdfut7TTUdcb3V5CIcR/mXRSyMXzEy9YxEWIfdKMxOMBjupvYQ==}
+  '@cloudflare/workerd-linux-64@1.20260310.1':
+    resolution: {integrity: sha512-XzQ0GZ8G5P4d74bQYOIP2Su4CLdNPpYidrInaSOuSxMw+HamsHaFrjVsrV2mPy/yk2hi6SY2yMbgKFK9YjA7vw==}
     engines: {node: '>=16'}
     cpu: [x64]
     os: [linux]
 
-  '@cloudflare/workerd-linux-arm64@1.20260301.1':
-    resolution: {integrity: sha512-igL1pkyCXW6GiGpjdOAvqMi87UW0LMc/+yIQe/CSzuZJm5GzXoAMrwVTkCFnikk6JVGELrM5x0tGYlxa0sk5Iw==}
+  '@cloudflare/workerd-linux-arm64@1.20260310.1':
+    resolution: {integrity: sha512-sxv4CxnN4ZR0uQGTFVGa0V4KTqwdej/czpIc5tYS86G8FQQoGIBiAIs2VvU7b8EROPcandxYHDBPTb+D9HIMPw==}
     engines: {node: '>=16'}
     cpu: [arm64]
     os: [linux]
 
-  '@cloudflare/workerd-windows-64@1.20260301.1':
-    resolution: {integrity: sha512-Q0wMJ4kcujXILwQKQFc1jaYamVsNvjuECzvRrTI8OxGFMx2yq9aOsswViE4X1gaS2YQQ5u0JGwuGi5WdT1Lt7A==}
+  '@cloudflare/workerd-windows-64@1.20260310.1':
+    resolution: {integrity: sha512-+1ZTViWKJypLfgH/luAHCqkent0DEBjAjvO40iAhOMHRLYP/SPphLvr4Jpi6lb+sIocS8Q1QZL4uM5Etg1Wskg==}
     engines: {node: '>=16'}
     cpu: [x64]
     os: [win32]
@@ -441,8 +441,8 @@ packages:
   '@codemirror/state@6.5.4':
     resolution: {integrity: sha512-8y7xqG/hpB53l25CIoit9/ngxdfoG+fx+V3SHBrinnhOtLvKHRyAJJuHzkWrR4YXXLX8eXBsejgAAxHUOdW1yw==}
 
-  '@codemirror/view@6.39.16':
-    resolution: {integrity: sha512-m6S22fFpKtOWhq8HuhzsI1WzUP/hB9THbDj0Tl5KX4gbO6Y91hwBl7Yky33NdvB6IffuRFiBxf1R8kJMyXmA4Q==}
+  '@codemirror/view@6.39.17':
+    resolution: {integrity: sha512-Aim4lFqhbijnchl83RLfABWueSGs1oUCSv0mru91QdhpXQeNKprIdRO9LWA4cYkJvuYTKGJN7++9MXx8XW43ag==}
 
   '@comark/markdown-it@0.3.1':
     resolution: {integrity: sha512-GyaZXxQ0lJfNR4zDebMcMj7A4jb9PM2gXt7mFdWDwA/s8ECYsYzWq2wEa/WmPqheuY0gHbnBxiK937hPQ+3IKA==}
@@ -1904,43 +1904,43 @@ packages:
     peerDependencies:
       typescript: '>=4.4.4'
 
-  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260308.1':
-    resolution: {integrity: sha512-mywkctYr45fUBUYD35poInc9HEjup0zyCO5z3ZU2QC9eCQShpwYSDceoSCwxVKB/b/f/CU6H3LqINFeIz5CvrQ==}
+  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260310.1':
+    resolution: {integrity: sha512-mzMXa3AIcEh3OKkuVYf/bvb8D6wsJ/kn1KLwBGb4C1NCak102spy1Bio1myrTMyjb/R+hRM7gom+KZ/5IHJvIg==}
     cpu: [arm64]
     os: [darwin]
 
-  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260308.1':
-    resolution: {integrity: sha512-iF+Y4USbCiD5BxmXI6xYuy+S6d2BhxKDb3YHjchzqg3AgleDNTd2rqSzlWv4ku26V2iOSfpM9t1H/xluL9pgNw==}
+  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260310.1':
+    resolution: {integrity: sha512-mAhe3pzvMP2Zfjny7deJWa2ro6DLGPli4UtcKPeX1XbJc9fVbR/YtgtoHJTxZ6KJTqIzpaZGrOxMuJiVdMTU6A==}
     cpu: [x64]
     os: [darwin]
 
-  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260308.1':
-    resolution: {integrity: sha512-uEIIbW1JYPGEesVh/P5xA+xox7pQ6toeFPeke2X2H2bs5YkWHVaUQtVZuKNmGelw+2PCG6XRrXvMgMp056ebuQ==}
+  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260310.1':
+    resolution: {integrity: sha512-tpDGCiZ10AsHxfEAxHn5SDXPSSmM9m75IMrieri/ljGOqkV/WeqjCj+OmLdjXTxv1FbLKbSXitxGxDeSmqR2zg==}
     cpu: [arm64]
     os: [linux]
 
-  '@typescript/native-preview-linux-arm@7.0.0-dev.20260308.1':
-    resolution: {integrity: sha512-vg8hwfwIhT8CmYJI5lG3PP8IoNzKKBGbq1cKjxQabSZTPuQKwVFVity2XKTKZKd+qRGL7xW4UWMJZLFgSx3b2Q==}
+  '@typescript/native-preview-linux-arm@7.0.0-dev.20260310.1':
+    resolution: {integrity: sha512-0xAS7aYeZPBVRU8+5vmaZVCCqUf82YE3KF/9G8x8OFoCuMPCZYUouzOFf/Y+kCrwyZguoPrd7TFiFdScVCj2gA==}
     cpu: [arm]
     os: [linux]
 
-  '@typescript/native-preview-linux-x64@7.0.0-dev.20260308.1':
-    resolution: {integrity: sha512-Yd/ht0CGE4NYUAjuHa1u4VbiJbyUgvDh+b2o+Zcb2h5t8B761DIzDm24QqVXh+KhvGUoEodXWg3g3APxLHqj8Q==}
+  '@typescript/native-preview-linux-x64@7.0.0-dev.20260310.1':
+    resolution: {integrity: sha512-J+Jwg/bWEwCrMIXAv2omBQYDt99PXbG4lFlDC9wKSnA0RXPyMeuRlFHc9HK0dbuB1teyZb7no23Q/EJcb5dpeQ==}
     cpu: [x64]
     os: [linux]
 
-  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260308.1':
-    resolution: {integrity: sha512-Klk6BoiHegfPmkO0YYrXmbYVdPjOfN25lRkzenqDIwbyzPlABHvICCyo5YRvWD3HU4EeDfLisIFU9wEd/0duCw==}
+  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260310.1':
+    resolution: {integrity: sha512-4SeUJxIQqERZXIT0ZsPpN3w2mDzDu17kVtOFhaHWxiPfa6RBAy7+uSpBqIHutaOR/q0gMnZWkFWXioTN8RIzOg==}
     cpu: [arm64]
     os: [win32]
 
-  '@typescript/native-preview-win32-x64@7.0.0-dev.20260308.1':
-    resolution: {integrity: sha512-4LrXmaMfzedwczANIkD/M9guPD4EWuQnCxOJsJkdYi3ExWQDjIFwfmxTtAmfPBWxVExLfn7UUkz/yCtcv2Wd+w==}
+  '@typescript/native-preview-win32-x64@7.0.0-dev.20260310.1':
+    resolution: {integrity: sha512-+9cCjzRzPhVfRtxx5713aDkjzAI/Ffq4KRf0eqM3l2mSCIvA9uk4kaeYM0c6QDe2Jcz6inFtkCy+3gLL84tIoQ==}
     cpu: [x64]
     os: [win32]
 
-  '@typescript/native-preview@7.0.0-dev.20260308.1':
-    resolution: {integrity: sha512-8a3oe5IAfBkEfMouRheNhOXUScBSHIUknPvUdsbxx7s+Ja1lxFNA1X1TTl2T18vu72Q/mM86vxefw5eW8/ps3g==}
+  '@typescript/native-preview@7.0.0-dev.20260310.1':
+    resolution: {integrity: sha512-g1Hi6V5YTYLzh4cf9yJwUMLmnFvqhqe/5V/rZ6Lx70P4BwSW5QuQBcXQMPWSD9CpsiO/xbhGfmtHZaxClAzosw==}
     hasBin: true
 
   '@typescript/vfs@1.6.2':
@@ -2475,14 +2475,17 @@ packages:
   '@weborigami/async-tree@0.6.12':
     resolution: {integrity: sha512-GH4IWHLigGxDJpQ4UAVzLHWPxoukmzM5LxxPYB/+0oQ0h1NrRVM6FTng1HEO8ZIA/uQpXq0pHsgPnasgoRW4tw==}
 
+  '@weborigami/async-tree@0.6.13':
+    resolution: {integrity: sha512-pG9J3iyy0ErrAB10piPCjLSQOnKjwekvnnMCQmlN6qbYGzwd/Rl/GHKH6cCbyEneYENoJksvjg4OG6rd6qCn9A==}
+
   '@weborigami/json-feed-to-rss@1.0.1':
     resolution: {integrity: sha512-HiPhIoelHH9pSrKnhvAwwUEbdiP11Ppg5TDU3VcfaADekObyEmCXYO7mu/zXNWD18oKc5zmGNGW7rUwb88C5sg==}
 
-  '@weborigami/language@0.6.12':
-    resolution: {integrity: sha512-8XgoUFQEcuEc4HMCei4XyTzKIoUxxVjcL37BlxC9Jffi0/fTIAaLGL81zmtL1YEwqPB+mg1f5cEifnHO+nP94w==}
+  '@weborigami/language@0.6.13':
+    resolution: {integrity: sha512-Zd6QhC73txsEQkLE4teoX1uoZXPiR3gSq7a50fd+H+da/hF1Y8YqRbXQ9wLeLw/82WA8HF9cwrL8iA0t6Mp3Vw==}
 
-  '@weborigami/origami@0.6.12':
-    resolution: {integrity: sha512-cd6HVqvz61cruDZU+S/TP1stmEYymMxIkY/ehriwCUi9WqZLDMCAJ1KLharIaV8jK4tz2QR2/vjLCvJxC9/SPA==}
+  '@weborigami/origami@0.6.13':
+    resolution: {integrity: sha512-O8wB6ycqg47ohsCIkDltOnLWlUPVKUZUmXSOAZXmQjTXQ//Eo6ZkwcEU3HXLMUIka457GjgsuWoiWDyHrxFXCg==}
     hasBin: true
 
   '@weborigami/pagefind@0.0.16':
@@ -4277,8 +4280,8 @@ packages:
     resolution: {integrity: sha512-e5ISH9xMYU0DzrT+jl8q2ze9D6eWBto+I8CNpe+VI+K2J/F/k3PdkdTdz4wvGVH4NTpo+NRYTVIuMQEMMcsLqg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  miniflare@4.20260301.1:
-    resolution: {integrity: sha512-fqkHx0QMKswRH9uqQQQOU/RoaS3Wjckxy3CUX3YGJr0ZIMu7ObvI+NovdYi6RIsSPthNtq+3TPmRNxjeRiasog==}
+  miniflare@4.20260310.0:
+    resolution: {integrity: sha512-uC5vNPenFpDSj5aUU3wGSABG6UUqMr+Xs1m4AkCrTHo37F4Z6xcQw5BXqViTfPDVT/zcYH1UgTVoXhr1l6ZMXw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -5766,32 +5769,6 @@ packages:
   wesl-gpu@0.1.25:
     resolution: {integrity: sha512-1xsHZGz6mWNKOUPCkxzb/btTNFARmZLtVaJuqArc52o8EywhxObG2H4koBRaBKD+r+0exHmWD3o9XEhnTzAv8w==}
 
-  wesl-plugin@0.6.70:
-    resolution: {integrity: sha512-HIRR7xURZNXn+ZvGf1/LwwyfAHgEtKC+8qHF2oe+YHF4uRyHynD6OEhLyZUxVGB2dk2zoYTCwPyKepxMncNL5g==}
-    peerDependencies:
-      '@farmfe/core': '>=1'
-      '@nuxt/kit': ^3
-      '@nuxt/schema': ^3
-      esbuild: '*'
-      rollup: ^3
-      vite: '>=3'
-      webpack: ^4 || ^5
-    peerDependenciesMeta:
-      '@farmfe/core':
-        optional: true
-      '@nuxt/kit':
-        optional: true
-      '@nuxt/schema':
-        optional: true
-      esbuild:
-        optional: true
-      rollup:
-        optional: true
-      vite:
-        optional: true
-      webpack:
-        optional: true
-
   wesl-plugin@0.6.71:
     resolution: {integrity: sha512-2l8xeZ3YkBGMR1wF9Uam2sB6AfgIu29VpxH0yZE3XfKzqR2F1YXIjGJPOdwC+W1EWl87Ua/crxmAekwqcXbEQw==}
     peerDependencies:
@@ -5833,14 +5810,11 @@ packages:
       random_wgsl:
         optional: true
 
-  wesl@0.7.22:
-    resolution: {integrity: sha512-RT3pj3rzBtyAmUfqMGHeuD71JP+QHedVYYxmgZXoeaWPDhUZLePg0tbaBbiMsyObMmFA+OETp96RMlyv6xC21Q==}
-
   wesl@0.7.23:
     resolution: {integrity: sha512-uEQhUBGFz3tNU4b7MHhHs2BpBhzcrEolJ2xwGrgqeYG5RNWtTHP1JgrU1XMiYNd04H2j35Wf209P6Ze6R/t0Rg==}
 
-  wgsl-edit@0.0.19:
-    resolution: {integrity: sha512-wjK6W7lLNmf2Fo32yd9s5j72Jxdcg4aFCZKc9WMBMPE2HrKJrm1H2YvABDLTN76g+VCdYIw5ARj8Rn+ZYGUj+A==}
+  wgsl-edit@0.0.22:
+    resolution: {integrity: sha512-xPQb4npHRxsnQ3KHe0z9VB2w6II1vm3awK/Jdihq+RRB+nQQosVt+a6LfnafuzTvf1l3ec42HHu/FFBhJ6oMGw==}
 
   wgsl-edit@0.0.7:
     resolution: {integrity: sha512-NO3KMGzeM5FxACj1Ei1as5xz4skp4hMkOWZxtz7cawNdtal9SH3GKSsl9ajgSfqsiEwJf/wpJSpKqAVg1CaPWQ==}
@@ -5848,8 +5822,8 @@ packages:
   wgsl-play@0.0.23:
     resolution: {integrity: sha512-DylH3qeKzJfgeN6Tk9xjqEFwysSEGMzpoUi9sI94M3y4hrD9zRHDD8rhRQrLFe1v4W87V8hNtSaPbm57ygNcxw==}
 
-  wgsl-play@0.0.33:
-    resolution: {integrity: sha512-wf2Plswwh3wjsGFlWh8Nk1P1cabAeTVWr6VwAvY1B5NLT6VOPukdXG/1miurEyDbvAd57UaRxTglbTLyJ6BbGg==}
+  wgsl-play@0.0.36:
+    resolution: {integrity: sha512-3h9AHOqO4Sw+1gGXqhkr+jCSN7nqdVh8jXXcKkNJV4C6LqrDp6he6BSER7Rdq3y0CmN08zY29HjxeJWwRCkL/g==}
 
   whatwg-mimetype@5.0.0:
     resolution: {integrity: sha512-sXcNcHOC51uPGF0P/D4NVtrkjSU2fNsm9iog4ZvZJsL3rjoDAzXZhkm2MWt1y+PUdggKAYVoMAIYcs78wJ51Cw==}
@@ -5888,17 +5862,17 @@ packages:
     resolution: {integrity: sha512-o0cyEG0e8GPzT4iGHphIOh0cJOV8fivsXxddQasHPHfoZf1ZexrfeA21w2NaEN1RHE+fXlfISmOE8R9N3u3Qig==}
     engines: {node: '>=12'}
 
-  workerd@1.20260301.1:
-    resolution: {integrity: sha512-oterQ1IFd3h7PjCfT4znSFOkJCvNQ6YMOyZ40YsnO3nrSpgB4TbJVYWFOnyJAw71/RQuupfVqZZWKvsy8GO3fw==}
+  workerd@1.20260310.1:
+    resolution: {integrity: sha512-yawXhypXXHtArikJj15HOMknNGikpBbSg2ZDe6lddUbqZnJXuCVSkgc/0ArUeVMG1jbbGvpst+REFtKwILvRTQ==}
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.71.0:
-    resolution: {integrity: sha512-j6pSGAncOLNQDRzqtp0EqzYj52CldDP7uz/C9cxVrIgqa5p+cc0b4pIwnapZZAGv9E1Loa3tmPD0aXonH7KTkw==}
+  wrangler@4.72.0:
+    resolution: {integrity: sha512-bKkb8150JGzJZJWiNB2nu/33smVfawmfYiecA6rW4XH7xS23/jqMbgpdelM34W/7a1IhR66qeQGVqTRXROtAZg==}
     engines: {node: '>=20.0.0'}
     hasBin: true
     peerDependencies:
-      '@cloudflare/workers-types': ^4.20260226.1
+      '@cloudflare/workers-types': ^4.20260310.1
     peerDependenciesMeta:
       '@cloudflare/workers-types':
         optional: true
@@ -6382,45 +6356,45 @@ snapshots:
 
   '@cloudflare/kv-asset-handler@0.4.2': {}
 
-  '@cloudflare/unenv-preset@2.15.0(unenv@2.0.0-rc.24)(workerd@1.20260301.1)':
+  '@cloudflare/unenv-preset@2.15.0(unenv@2.0.0-rc.24)(workerd@1.20260310.1)':
     dependencies:
       unenv: 2.0.0-rc.24
     optionalDependencies:
-      workerd: 1.20260301.1
+      workerd: 1.20260310.1
 
-  '@cloudflare/workerd-darwin-64@1.20260301.1':
+  '@cloudflare/workerd-darwin-64@1.20260310.1':
     optional: true
 
-  '@cloudflare/workerd-darwin-arm64@1.20260301.1':
+  '@cloudflare/workerd-darwin-arm64@1.20260310.1':
     optional: true
 
-  '@cloudflare/workerd-linux-64@1.20260301.1':
+  '@cloudflare/workerd-linux-64@1.20260310.1':
     optional: true
 
-  '@cloudflare/workerd-linux-arm64@1.20260301.1':
+  '@cloudflare/workerd-linux-arm64@1.20260310.1':
     optional: true
 
-  '@cloudflare/workerd-windows-64@1.20260301.1':
+  '@cloudflare/workerd-windows-64@1.20260310.1':
     optional: true
 
   '@codemirror/autocomplete@6.20.1':
     dependencies:
       '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.16
+      '@codemirror/view': 6.39.17
       '@lezer/common': 1.5.1
 
   '@codemirror/commands@6.10.2':
     dependencies:
       '@codemirror/language': 6.12.2
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.16
+      '@codemirror/view': 6.39.17
       '@lezer/common': 1.5.1
 
   '@codemirror/language@6.12.2':
     dependencies:
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.16
+      '@codemirror/view': 6.39.17
       '@lezer/common': 1.5.1
       '@lezer/highlight': 1.2.3
       '@lezer/lr': 1.4.8
@@ -6429,20 +6403,20 @@ snapshots:
   '@codemirror/lint@6.9.5':
     dependencies:
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.16
+      '@codemirror/view': 6.39.17
       crelt: 1.0.6
 
   '@codemirror/search@6.6.0':
     dependencies:
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.16
+      '@codemirror/view': 6.39.17
       crelt: 1.0.6
 
   '@codemirror/state@6.5.4':
     dependencies:
       '@marijn/find-cluster-break': 1.0.2
 
-  '@codemirror/view@6.39.16':
+  '@codemirror/view@6.39.17':
     dependencies:
       '@codemirror/state': 6.5.4
       crelt: 1.0.6
@@ -8302,36 +8276,36 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260308.1':
+  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260310.1':
     optional: true
 
-  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260308.1':
+  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260310.1':
     optional: true
 
-  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260308.1':
+  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260310.1':
     optional: true
 
-  '@typescript/native-preview-linux-arm@7.0.0-dev.20260308.1':
+  '@typescript/native-preview-linux-arm@7.0.0-dev.20260310.1':
     optional: true
 
-  '@typescript/native-preview-linux-x64@7.0.0-dev.20260308.1':
+  '@typescript/native-preview-linux-x64@7.0.0-dev.20260310.1':
     optional: true
 
-  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260308.1':
+  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260310.1':
     optional: true
 
-  '@typescript/native-preview-win32-x64@7.0.0-dev.20260308.1':
+  '@typescript/native-preview-win32-x64@7.0.0-dev.20260310.1':
     optional: true
 
-  '@typescript/native-preview@7.0.0-dev.20260308.1':
+  '@typescript/native-preview@7.0.0-dev.20260310.1':
     optionalDependencies:
-      '@typescript/native-preview-darwin-arm64': 7.0.0-dev.20260308.1
-      '@typescript/native-preview-darwin-x64': 7.0.0-dev.20260308.1
-      '@typescript/native-preview-linux-arm': 7.0.0-dev.20260308.1
-      '@typescript/native-preview-linux-arm64': 7.0.0-dev.20260308.1
-      '@typescript/native-preview-linux-x64': 7.0.0-dev.20260308.1
-      '@typescript/native-preview-win32-arm64': 7.0.0-dev.20260308.1
-      '@typescript/native-preview-win32-x64': 7.0.0-dev.20260308.1
+      '@typescript/native-preview-darwin-arm64': 7.0.0-dev.20260310.1
+      '@typescript/native-preview-darwin-x64': 7.0.0-dev.20260310.1
+      '@typescript/native-preview-linux-arm': 7.0.0-dev.20260310.1
+      '@typescript/native-preview-linux-arm64': 7.0.0-dev.20260310.1
+      '@typescript/native-preview-linux-x64': 7.0.0-dev.20260310.1
+      '@typescript/native-preview-win32-arm64': 7.0.0-dev.20260310.1
+      '@typescript/native-preview-win32-x64': 7.0.0-dev.20260310.1
 
   '@typescript/vfs@1.6.2(typescript@5.6.3)':
     dependencies:
@@ -9299,21 +9273,23 @@ snapshots:
 
   '@weborigami/async-tree@0.6.12': {}
 
+  '@weborigami/async-tree@0.6.13': {}
+
   '@weborigami/json-feed-to-rss@1.0.1': {}
 
-  '@weborigami/language@0.6.12':
+  '@weborigami/language@0.6.13':
     dependencies:
-      '@weborigami/async-tree': 0.6.12
+      '@weborigami/async-tree': 0.6.13
       exif-parser: 0.1.12
       watcher: 2.3.1
       yaml: 2.8.2
 
-  '@weborigami/origami@0.6.12':
+  '@weborigami/origami@0.6.13':
     dependencies:
       '@hpcc-js/wasm-graphviz': 1.21.1
-      '@weborigami/async-tree': 0.6.12
+      '@weborigami/async-tree': 0.6.13
       '@weborigami/json-feed-to-rss': 1.0.1
-      '@weborigami/language': 0.6.12
+      '@weborigami/language': 0.6.13
       css-tree: 3.1.0
       highlight.js: 11.11.1
       jsdom: 28.1.0
@@ -9666,7 +9642,7 @@ snapshots:
       '@codemirror/lint': 6.9.5
       '@codemirror/search': 6.6.0
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.16
+      '@codemirror/view': 6.39.17
 
   color-convert@1.9.3:
     dependencies:
@@ -11507,12 +11483,12 @@ snapshots:
 
   mimic-response@4.0.0: {}
 
-  miniflare@4.20260301.1:
+  miniflare@4.20260310.0:
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       sharp: 0.34.5
       undici: 7.18.2
-      workerd: 1.20260301.1
+      workerd: 1.20260310.1
       ws: 8.18.0
       youch: 4.1.0-beta.10
     transitivePeerDependencies:
@@ -13306,15 +13282,6 @@ snapshots:
       thimbleberry: 0.2.10
       wesl: 0.7.23
 
-  wesl-plugin@0.6.70(@nuxt/kit@3.21.1)(esbuild@0.27.3)(vite@7.3.1(@types/node@22.19.11)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)):
-    dependencies:
-      unplugin: 2.3.11
-      wesl: 0.7.22
-    optionalDependencies:
-      '@nuxt/kit': 3.21.1
-      esbuild: 0.27.3
-      vite: 7.3.1(@types/node@22.19.11)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)
-
   wesl-plugin@0.6.71(@nuxt/kit@3.21.1)(esbuild@0.27.3)(vite@7.3.1(@types/node@22.19.11)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)):
     dependencies:
       unplugin: 2.3.11
@@ -13333,11 +13300,9 @@ snapshots:
 
   wesl@0.7.16: {}
 
-  wesl@0.7.22: {}
-
   wesl@0.7.23: {}
 
-  wgsl-edit@0.0.19:
+  wgsl-edit@0.0.22:
     dependencies:
       '@codemirror/autocomplete': 6.20.1
       '@codemirror/commands': 6.10.2
@@ -13345,7 +13310,7 @@ snapshots:
       '@codemirror/lint': 6.9.5
       '@codemirror/search': 6.6.0
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.16
+      '@codemirror/view': 6.39.17
       '@lezer/highlight': 1.2.3
       codemirror: 6.0.2
       lezer-wesl: 0.6.44(@codemirror/language@6.12.2)
@@ -13357,7 +13322,7 @@ snapshots:
       '@codemirror/language': 6.12.2
       '@codemirror/lint': 6.9.5
       '@codemirror/state': 6.5.4
-      '@codemirror/view': 6.39.16
+      '@codemirror/view': 6.39.17
       '@lezer/highlight': 1.2.3
       codemirror: 6.0.2
       lezer-wesl: 0.6.38(@codemirror/language@6.12.2)
@@ -13374,7 +13339,7 @@ snapshots:
     transitivePeerDependencies:
       - random_wgsl
 
-  wgsl-play@0.0.33:
+  wgsl-play@0.0.36:
     dependencies:
       wesl: 0.7.23
       wesl-fetch: 0.0.11
@@ -13443,24 +13408,24 @@ snapshots:
     dependencies:
       string-width: 5.1.2
 
-  workerd@1.20260301.1:
+  workerd@1.20260310.1:
     optionalDependencies:
-      '@cloudflare/workerd-darwin-64': 1.20260301.1
-      '@cloudflare/workerd-darwin-arm64': 1.20260301.1
-      '@cloudflare/workerd-linux-64': 1.20260301.1
-      '@cloudflare/workerd-linux-arm64': 1.20260301.1
-      '@cloudflare/workerd-windows-64': 1.20260301.1
+      '@cloudflare/workerd-darwin-64': 1.20260310.1
+      '@cloudflare/workerd-darwin-arm64': 1.20260310.1
+      '@cloudflare/workerd-linux-64': 1.20260310.1
+      '@cloudflare/workerd-linux-arm64': 1.20260310.1
+      '@cloudflare/workerd-windows-64': 1.20260310.1
 
-  wrangler@4.71.0:
+  wrangler@4.72.0:
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.2
-      '@cloudflare/unenv-preset': 2.15.0(unenv@2.0.0-rc.24)(workerd@1.20260301.1)
+      '@cloudflare/unenv-preset': 2.15.0(unenv@2.0.0-rc.24)(workerd@1.20260310.1)
       blake3-wasm: 2.1.5
       esbuild: 0.27.3
-      miniflare: 4.20260301.1
+      miniflare: 4.20260310.0
       path-to-regexp: 6.3.0
       unenv: 2.0.0-rc.24
-      workerd: 1.20260301.1
+      workerd: 1.20260310.1
     optionalDependencies:
       fsevents: 2.3.3
     transitivePeerDependencies:
