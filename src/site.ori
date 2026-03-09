@@ -1,10 +1,7 @@
 // This file defines the overall structure of the WESL site
 {
-  // Static assets + compiled TypeScript
-  assets/ = {
-    ...assets/
-    ...Tree.mapExtension(ts, ".ts->.js", stripTs.js)
-  }
+  // Static assets (main.js is built by Vite with wesl-plugin)
+  assets/ = assets/
   llms.txt
 
   // Web component bundles from node_modules
@@ -19,7 +16,10 @@
   presentations/ = {
     wgsl-test-2026-01-13/ = ../presentations/wgsl-test-2026-01-13/dist
     symposium-2026-02-13/ = ../presentations/symposium-2026-02-13/dist
+    jsnation-2026/ = ../presentations/jsnation-2026/dist
   }
+  
+  gdc-2026/ = ../presentations/gdc-2026/dist
   
   // All the pages as objects with properties for title + body HTML. This
   // collection and the others below with names in parentheses are
