@@ -437,7 +437,7 @@ const shaderModule = linked.createShaderModule(device, {});
 - **`super::` vs `package::`:** `super::` climbs one level up the module hierarchy and can be stacked, but most code uses `package::` (absolute from root) instead.
 - **Transitive imports:** Dependencies of imported modules are included automatically. If A imports B and B uses C, you do not need to import C in A.
 - **Incremental migration:** WESL linkers fall back to `.wgsl` files when a `.wesl` file is not found, so projects can migrate file-by-file. You can mix `.wgsl` and `.wesl` in the same project.
-- **wgsl-play web component:** Access `constants::` as `test::Uniforms` which provides `resolution: vec2f`, `time: f32`, `mouse: vec2f`.
+- **wgsl-play web component:** Standard uniforms are available via `env::u` which provides `resolution: vec2f`, `time: f32`, `mouse: vec2f`.
 
 ## Ecosystem
 
