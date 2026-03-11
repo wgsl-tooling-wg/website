@@ -1,5 +1,4 @@
 import package::zoom::mandelbrotZoom;
-
 import env::u;
 
 @fragment

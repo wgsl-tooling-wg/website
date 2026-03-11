@@ -237,10 +237,10 @@ Extensions work via lightweight transpilation
 
 We can add language ergonomics and integration features.
 
-But the extensions are purely additive, intended **support** and only enhance WebGPU/WGSL.
+But the extensions are purely **additive**, 
+intended to **support** and **only enhance** WebGPU/WGSL.
 
-Our tools are tested against both the browser conformance
-test suite and the extensions test suite.  
+tested against the same **conformance test suite** used by browser WebGPU implementation.
 
 -->
 
@@ -302,6 +302,12 @@ Code Formatter
 </div>
 
 </div>
+
+<!-- 
+**Tools** 
+- to use **extensions in your app** (it's easy).
+- And **other tools** too that support WebGPU shader development.
+-->
 
 ---
 layout: center
@@ -376,7 +382,8 @@ by adding a plugin to the bundler (like **vite** or **webpack**)
 
 **?link** to transpile at runtime
 
-or in rust
+or in **rust**, which also includes **C bindings**
+
 -->
 
 ---
