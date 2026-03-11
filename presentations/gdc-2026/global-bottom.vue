@@ -1,6 +1,6 @@
 <template>
   <footer
-    v-if="!['cover', 'center'].includes($nav.currentLayout)"
+    v-if="$nav.currentPage > 2 && !['cover', 'center'].includes($nav.currentLayout)"
     class="absolute bottom-1 left-0 right-0 px-4 flex justify-between text-sm text-gray-400 z-10"
   >
     <span></span>

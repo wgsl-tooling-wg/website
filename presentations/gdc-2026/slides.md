@@ -9,6 +9,10 @@ shikiOptions:
 drawings:
   persist: false
 transition: none
+layout: image
+image: /khronos-title.jpeg
+---
+
 ---
 
 # Modern WebGPU
@@ -454,7 +458,7 @@ Shader libraries as npm packages
 <!--
 users can use the library like any other npm package.
 
-for example Lygia a large collection of shader functions from the Book of Shaders
+for example Lygia a large collection of shader functions from the **Book of Shaders**
 -->
 
 ---
@@ -475,11 +479,11 @@ same sources, published two ways.
 </div>
 
 <!--
-cargo will work the same
+cargo works similarly
 
-note that same shares are published twice 
+**sharing the extensions** means that the shaders work in both **rust and javascript** ecosystems.
 
-make it easy by connecting to existing dev and packaging tooling
+and developers **use existing tools** for packaging 
 -->
 
 ---

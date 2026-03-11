@@ -1,6 +1,6 @@
-import env::u;
-import package::{color::palette, shape::star};
 import lygia::{draw::fill::fill, generative::snoise::snoise2};
+import package::{color::palette, shape::star};
+import env::u;
 
 @fragment
 fn main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
