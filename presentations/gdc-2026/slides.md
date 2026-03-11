@@ -565,13 +565,10 @@ write unit **tests in shader code**
 <img src="/image_snapshot_fail.png" alt="image snapshot failure example" class="h-100" />
 
 <!--
-you can also do image snapshot testing.
+image snapshot runs **headless in CI**, no browser required.
 
-runs in CI, no browser required.
+It produces a nice little **html report** on failures.
 
-It produces a nice little html report on failures.
-
-...so that's command line tooling.
 -->
 
 ---
@@ -904,7 +901,7 @@ layout: center
 
 <div class="mt-8 ">
 
-### Shaders are easy
+### GPU magic on any web page
 <div class="ml-8 mt-4">
 Tooling makes it easier
 
@@ -924,7 +921,7 @@ Common extensions enable standard tools
 
 <div class="mt-8 ">
 
-### Tell us about WebGPU challenges
+### Share your WebGPU challenges
 
 <div class="ml-8 mt-4">
 Maybe we can help with tools or extensions
@@ -937,12 +934,15 @@ Maybe we can help with tools or extensions
 
 **tools** make it even easier to **build and maintain**
 
-Tools are new, 
-**star the repo, spread the word.**
+If you find the need to extend WebGPU, work with us
+on **common extensions**. It's all open source.
 
-We'd love your **feedback**, or your **help**! 
+We'd love your **feedback**, and your help.
 
-It's all open source.
+**star the repo** and
+
+**spread the word** on all these new tools.
+
 -->
 
 ---
