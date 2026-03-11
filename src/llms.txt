@@ -1,5 +1,5 @@
-# WESL (WebGPU Extended Shading Language)
-
+# WESL (WebGPU Enanced Shading Language)
+  
 > WESL is a fully backward-compatible strict superset of WGSL (WebGPU Shading Language) that adds a module import system, conditional compilation, and package support. Current edition: `2026_pre`. Implementations: JS/TS (`wesl` npm) and Rust (`wesl-rs` crate).
 
 ## Key Pages
