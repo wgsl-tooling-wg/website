@@ -1,0 +1,3 @@
+import{o as r,b as n,w as p,g as a,j as l,v as m,x as i,z as t}from"./modules/vue-VVpnpNQ_.js";import{I as c}from"./slidev/default-BT59hVj4.js";import{u as d,f as u}from"./slidev/context-bVgkh9gs.js";import"./index-VdM8vD28.js";import"./modules/shiki-DVG5ox3C.js";const g="/gdc-2026/lygia_npm.png",B={__name:"slides.md__slidev_11",setup(_){const{$clicksContext:e,$frontmatter:o}=d();return e.setup(),(f,s)=>(r(),n(c,m(i(t(u)(t(o),10))),{default:p(()=>[s[0]||(s[0]=a("img",{src:g,alt:"Lygia npm pacakge",class:"h-100"},null,-1)),l(`
+Shader libraries as npm packages
+`),s[1]||(s[1]=a("div",{class:"mt-4 space-y-2"},[a("h4",null,"Usage"),a("p",null,[a("code",null,"npm add lygia")])],-1))]),_:1},16))}};export{B as default};

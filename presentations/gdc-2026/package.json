@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev",
-    "build": "slidev build --base /gdc-2026/",
+    "rebuild": "slidev build --base /gdc-2026/",
     "export": "slidev export"
   },
   "dependencies": {

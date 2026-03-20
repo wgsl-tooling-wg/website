@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev",
-    "build": "slidev build --base /presentations/symposium-2026-02-13/",
+    "rebuild": "slidev build --base /presentations/symposium-2026-02-13/",
     "export": "slidev export"
   },
   "dependencies": {

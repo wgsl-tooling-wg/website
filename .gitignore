@@ -1,6 +1,9 @@
 build
 node_modules
 dist
+!presentations/gdc-2026/dist
+!presentations/symposium-2026-02-13/dist
+!presentations/wgsl-test-2026-01-13/dist
 presentations/*/index.html
 src/assets/main.js
 .DS_Store

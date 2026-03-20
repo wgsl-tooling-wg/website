@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev",
-    "build": "slidev build --base /presentations/wgsl-test-2026-01-13/",
+    "rebuild": "slidev build --base /presentations/wgsl-test-2026-01-13/",
     "export": "slidev export"
   },
   "dependencies": {
