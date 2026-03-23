@@ -2,7 +2,7 @@ const path = require("path");
 
 function readPackage(pkg) {
   if (process.env.LOCAL_DEPS) {
-    const toolsPkgs = path.resolve(__dirname, "../wesl-js/tools/packages");
+    const toolsPkgs = path.resolve(__dirname, "../wesl-js/packages");
     pkg.dependencies = {
       ...pkg.dependencies,
       "wesl-plugin": `link:${toolsPkgs}/wesl-plugin`,
