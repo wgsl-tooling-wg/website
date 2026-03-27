@@ -70,27 +70,25 @@ const envSrc = `
   @group(0) @binding(0) var<uniform> u: Uniforms;
 `;
 
-interface WeslProject {
-  weslSrc?: Record<string, string>;
-  rootModuleName?: string;
-  conditions?: Record<string, boolean>;
-}
-
 interface WgslEditElement extends HTMLElement {
   source: string;
-  sources: Record<string, string>;
-  _libs?: any[];
   conditions: Record<string, boolean>;
-  project: WeslProject;
+  project: {
+    weslSrc?: Record<string, string>;
+    rootModuleName?: string;
+    conditions?: Record<string, boolean>;
+    constants?: Record<string, string | number>;
+    libs?: any[];
+    packageName?: string;
+  };
   link(options: { virtualLibs: Record<string, () => string> }): Promise<string>;
 }
 
 interface WgslPlayElement extends HTMLElement {
-  project: WeslProject;
-  rebuildPipeline(): void;
+  project: WgslEditElement["project"];
 }
 
-const homeProject: WeslProject = {
+const homeProject: WgslEditElement["project"] = {
   ...linkConfig,
   conditions: { noise: true },
 };

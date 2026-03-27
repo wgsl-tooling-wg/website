@@ -61,7 +61,7 @@ export function connectPlayerToEditor(playerId: string, editorId: string) {
   const player = document.getElementById(playerId);
   if (player) {
     trapKeys(player);
-    player.setAttribute("source", editorId);
+    player.setAttribute("from", editorId);
   }
   const editor = document.getElementById(editorId);
   if (editor) {

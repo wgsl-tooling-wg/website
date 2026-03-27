@@ -955,7 +955,7 @@ Interested in learning from you about ways to make declarative tests and demos.
 <div style="margin-top: .5rem;">
 
 ```html
-<wgsl-play id="play" source="edit"></wgsl-play>
+<wgsl-play id="play" from="edit"></wgsl-play>
 
 <wgsl-edit id="edit" lint-from="play"></wgsl-edit>
 ```

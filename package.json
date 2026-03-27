@@ -2,20 +2,20 @@
   "name": "wesl-site",
   "type": "module",
   "dependencies": {
-    "@weborigami/async-tree": "0.6.13",
-    "@weborigami/origami": "0.6.13",
+    "@weborigami/async-tree": "0.6.15",
+    "@weborigami/origami": "0.6.15",
     "@weborigami/pagefind": "0.0.16",
     "highlight.js": "^11.11.1",
     "lygia": "^1.4.1",
-    "marked": "^17.0.4",
+    "marked": "^17.0.5",
     "marked-footnote": "^1.4.0",
     "marked-gfm-heading-id": "^4.1.3",
     "marked-highlight": "^2.2.3",
     "marked-smartypants": "^1.1.11",
-    "wesl-plugin": "^0.6.71",
+    "wesl-plugin": "^0.6.73",
     "wesl-rs-wasm": "https://github.com/mighdoll/big-files/raw/main/wesl-rs-wasm-0.3.2.tgz",
-    "wgsl-edit": "^0.0.22",
-    "wgsl-play": "^0.0.36"
+    "wgsl-edit": "^0.0.24",
+    "wgsl-play": "^0.0.38"
   },
   "scripts": {
     "build": "run-s build:packages build:demo build:site",
@@ -32,10 +32,10 @@
     "serve": "serve build"
   },
   "devDependencies": {
-    "@typescript/native-preview": "7.0.0-dev.20260310.1",
+    "@typescript/native-preview": "7.0.0-dev.20260326.1",
     "npm-run-all": "^4.1.5",
     "serve": "^14.2.6",
-    "vite": "^7.3.1",
-    "wrangler": "^4.72.0"
+    "vite": "^8.0.3",
+    "wrangler": "^4.77.0"
   }
 }

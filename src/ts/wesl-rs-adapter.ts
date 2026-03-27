@@ -9,9 +9,11 @@ interface WeslBundle {
 }
 
 interface WeslEditor {
-  sources: Record<string, string>;
-  _libs?: WeslBundle[];
-  conditions?: Record<string, boolean>;
+  project: {
+    weslSrc?: Record<string, string>;
+    libs?: WeslBundle[];
+    conditions?: Record<string, boolean>;
+  };
   link(options: { virtualLibs: Record<string, () => string> }): Promise<string>;
 }
 
@@ -51,9 +53,9 @@ function buildFilesMap(
   editor: WeslEditor,
   envSrc: string,
 ): Record<string, string> {
-  const files: Record<string, string> = { ...editor.sources };
+  const files: Record<string, string> = { ...editor.project.weslSrc };
   files["env"] = envSrc;
-  for (const bundle of editor._libs || []) {
+  for (const bundle of editor.project.libs || []) {
     collectBundleModules(bundle, files);
   }
   return files;
