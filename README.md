@@ -15,25 +15,23 @@ You will need an LTS version of [Node.js](https://nodejs.org) and [pnpm](https:/
    pnpm install
    ```
 
-1. Setup submodules
+1. Setup the spec submodule
 
-   This repository currently includes the
-   [WESL wiki](https://github.com/wgsl-tooling-wg/website/wiki) and
-   [WESL Spec](https://github.com/wgsl-tooling-wg/wesl-spec) content via submodules.
+   This repository includes the [WESL Spec](https://github.com/wgsl-tooling-wg/wesl-spec) content as a git submodule. (User-facing wiki content lives directly in `wiki/`.)
 
-   Initialize the submodules.
+   Initialize the submodule.
 
    ```sh
    git submodule init
    ```
 
-   Setup future git commands (like git pull) to automatically work on submodules too.
+   Setup future git commands (like git pull) to automatically work on the submodule too.
 
    ```sh
    git config submodule.recurse true
    ```
 
-   Install submodule content too
+   Pull the spec content.
 
    ```sh
    git pull
@@ -60,14 +58,12 @@ The site uses the [Origami](https://weborigami.org) programming language to: a) 
 
 ## Source content
 
-This site uses GitHub as a CMS, pulling markdown content from two main sources:
+The site pulls markdown content from two sources:
 
-1. [WESL wiki](https://github.com/wgsl-tooling-wg/website/wiki) attached to this `website` repository. This is more general information aimed at users. The wiki can be edited directly by project members. This set of files is more freely editable, so the [src/wiki.ori](./src/wiki.ori) file explicitly excludes the markdown files the site doesn't want.
-1. [WESL Spec](https://github.com/wgsl-tooling-wg/wesl-spec) repository. This is information primarily for WESL implementors and advanced users. Edits to the spec are gated via pull requests. This set of files isn't expected to change frequently, so the [src/spec.ori](./src/spec.ori) file explicitly selects the markdown files the site wants.
+1. The [`wiki/`](./wiki) directory in this repo. These are the user-facing docs (Getting Started, Writing Shaders, etc.) and are mapped to the `/docs/` area of the site by [src/site.ori](./src/site.ori).
+1. The [WESL Spec](https://github.com/wgsl-tooling-wg/wesl-spec) repository, registered as a git submodule at `wesl-spec/`. This is information primarily for WESL implementors and advanced users; edits to the spec are gated via pull requests.
 
-By registering both sources as git submodules (see "Getting Started" above), the project ends up with local copies of those projects, including all of their markdown files.
-
-**If you want to add a new page to the docs or specs areas:** add the page to the wiki or spec, respectively.
+**If you want to add a new page to the docs area:** add a markdown file to `wiki/` and add a nav link in `src/nav.html`. For the spec area, open a PR against the `wesl-spec` repo.
 
 Separately, the [src/assets](./src/assets) folder defines styles, images, fonts, and other static resources. New assets can be safely added there.
 
